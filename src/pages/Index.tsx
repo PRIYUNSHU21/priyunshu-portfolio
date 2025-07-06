@@ -244,9 +244,7 @@ const Index = () => {
                 <span className="text-xs">GPA</span>
               </div>
               
-              <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-2xl px-6 py-3 font-semibold text-sm shadow-2xl animate-pulse">
-                Available for Projects
-              </div>
+              <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-2xl px-6 py-3 font-semibold text-sm shadow-2xl animate-pulse">LETS COLAB !</div>
               
               <div className="absolute top-1/2 -right-8 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl animate-bounce delay-300">
                 <Sparkles size={24} />
@@ -471,12 +469,10 @@ const Index = () => {
             <div className="text-white font-light tracking-wider">
               PRIYUNSHU SAHA
             </div>
-            <div className="text-gray-400 text-sm tracking-wider">
-              © 2024 BUILT WITH PASSION AND INNOVATION
-            </div>
+            <div className="text-gray-400 text-sm tracking-wider">BYE ! HOPE TO SEE YOU AGAIN</div>
             <div className="flex space-x-6 text-sm text-gray-400 tracking-wider">
-              <span>DIGITAL DESIGN</span>
-              <span>2024</span>
+              <span>COOOL !</span>
+              <span>202?</span>
             </div>
           </div>
         </div>
