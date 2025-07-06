@@ -398,7 +398,7 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-6 bg-black/30">
+      <section id="contact" className="py-20 px-6 rounded-lg bg-slate-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
             <div className="text-sm uppercase tracking-[0.3em] text-amber-400 mb-4">Contact</div>
