@@ -513,7 +513,7 @@ const Index = () => {
                   <div className="w-12 h-12 bg-amber-400/20 rounded-full flex items-center justify-center">
                     <Linkedin className="text-amber-400 w-5 h-5" />
                   </div>
-                  <a href="https://www.linkedin.com/in/priyunshu-saha" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-amber-400 transition-colors">
                     LinkedIn Profile
                   </a>
                 </div>
@@ -521,7 +521,9 @@ const Index = () => {
                   <div className="w-12 h-12 bg-amber-400/20 rounded-full flex items-center justify-center">
                     <Github className="text-amber-400 w-5 h-5" />
                   </div>
-                  <span className="text-gray-300">GitHub (Available on request)</span>
+                  <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-amber-400 transition-colors">
+                    GitHub Profile
+                  </a>
                 </div>
               </div>
             </div>
