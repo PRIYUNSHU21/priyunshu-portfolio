@@ -304,7 +304,7 @@ const Index = () => {
                       <h4 className="text-lg font-semibold text-amber-400">
                         B.Tech in Computer Science and Engineering
                       </h4>
-                      <p className="text-gray-300">BP Poddar Institute of Management and Technology</p>
+                      <p className="text-gray-300 text-sm">BP Poddar Institute of Management and Technology</p>
                       <p className="text-gray-400">2023–2027 | Current GPA: 8.8</p>
                     </div>
                   </div>
