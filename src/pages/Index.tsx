@@ -212,7 +212,7 @@ const Index = () => {
               <Button onClick={() => scrollToSection('projects')} className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white border-0 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25">
                 View My Work <ArrowRight className="ml-2" />
               </Button>
-              <Button onClick={() => scrollToSection('contact')} variant="outline" className="border-2 border-gray-400/30 text-gray-300 hover:bg-gray-300 hover:text-slate-900 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 backdrop-blur-sm">
+              <Button onClick={() => scrollToSection('contact')} variant="outline" className="border-2 border-gray-400/30 hover:bg-gray-300 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 backdrop-blur-sm text-zinc-950">
                 Let's Connect
               </Button>
             </div>
