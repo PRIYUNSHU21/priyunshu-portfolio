@@ -172,7 +172,7 @@ const Index = () => {
               <h1 className="text-7xl md:text-8xl lg:text-9xl font-black leading-none">
                 <span className="text-white drop-shadow-2xl">PRIYUNSHU</span>
                 <br />
-                <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 bg-clip-text text-transparent animate-pulse">
+                <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 bg-clip-text animate-pulse text-[#e0e8d0]/0">
                   SAHA
                 </span>
               </h1>
