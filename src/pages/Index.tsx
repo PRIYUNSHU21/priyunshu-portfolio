@@ -158,7 +158,7 @@ const Index = () => {
           </div>
         </div>
         
-        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
+        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10 bg-[#f6e4fc]/0">
           {/* Enhanced Left Content */}
           <div className="space-y-10">
             <div className="space-y-6">
