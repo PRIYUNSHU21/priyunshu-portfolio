@@ -6,19 +6,58 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+import emailjs from '@emailjs/browser';
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const {
-    toast
-  } = useToast();
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { toast } = useToast();
+
+  // Initialize EmailJS
+  useEffect(() => {
+    emailjs.init("KoP5M4-6Z5iEj-Zpp");
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    toast({
-      title: "Message Sent!",
-      description: "Thanks for reaching out. I'll get back to you soon!"
-    });
+    setIsSubmitting(true);
+
+    const form = e.target as HTMLFormElement;
+    const formData = new FormData(form);
+    
+    const templateParams = {
+      from_name: formData.get('name'),
+      from_email: formData.get('email'),
+      message: formData.get('message'),
+      to_name: 'Priyunshu Saha',
+    };
+
+    try {
+      await emailjs.send(
+        'service_qpx4ntv',
+        'template_3qisbgp',
+        templateParams
+      );
+      
+      toast({
+        title: "Message Sent!",
+        description: "Thanks for reaching out. I'll get back to you soon!"
+      });
+      
+      form.reset();
+    } catch (error) {
+      console.error('EmailJS error:', error);
+      toast({
+        title: "Error",
+        description: "Failed to send message. Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -28,6 +67,7 @@ const Index = () => {
     }
     setIsMenuOpen(false);
   };
+
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'skills', 'projects', 'services', 'contact'];
@@ -44,6 +84,7 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const skills = [{
     name: 'Python',
     level: 90
@@ -69,6 +110,7 @@ const Index = () => {
     name: 'Git/GitHub',
     level: 90
   }];
+
   const projects = [{
     title: 'BHAV – Bengali AI Chatbot',
     description: 'AI-powered chatbot for Bengali interaction with complete website & mobile app integration.',
@@ -85,6 +127,7 @@ const Index = () => {
     tech: ['Backend', 'API', 'UI/UX', 'Database'],
     color: 'from-green-500 to-teal-500'
   }];
+
   const services = [{
     title: 'Mobile App Development',
     description: 'Cross-platform apps with Flutter focusing on performance and user experience',
@@ -102,7 +145,9 @@ const Index = () => {
     description: 'User-centered design concepts and interactive prototypes (continuous learning)',
     icon: '🎨'
   }];
-  return <div className="min-h-screen bg-gradient-to-br from-slate-950 via-violet-950 to-indigo-950">
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-violet-950 to-indigo-950">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-violet-500/20">
         <div className="container mx-auto px-6 py-4">
@@ -113,23 +158,44 @@ const Index = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => <button key={item} onClick={() => scrollToSection(item)} className={`capitalize transition-all duration-300 font-medium tracking-wide text-sm ${activeSection === item ? 'text-orange-400 scale-105' : 'text-gray-300 hover:text-orange-400 hover:scale-105'}`}>
+              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className={`capitalize transition-all duration-300 font-medium tracking-wide text-sm ${
+                    activeSection === item
+                      ? 'text-orange-400 scale-105'
+                      : 'text-gray-300 hover:text-orange-400 hover:scale-105'
+                  }`}
+                >
                   {item}
-                </button>)}
+                </button>
+              ))}
             </div>
 
             {/* Mobile Menu Button */}
-            <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
+            <button
+              className="md:hidden text-white"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
 
           {/* Mobile Navigation */}
-          {isMenuOpen && <div className="md:hidden mt-4 space-y-4 bg-slate-900/80 backdrop-blur-lg rounded-xl p-6">
-              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => <button key={item} onClick={() => scrollToSection(item)} className="block w-full text-left capitalize text-gray-300 hover:text-orange-400 transition-colors font-medium">
+          {isMenuOpen && (
+            <div className="md:hidden mt-4 space-y-4 bg-slate-900/80 backdrop-blur-lg rounded-xl p-6">
+              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => (
+                <button
+                  key={item}
+                  onClick={() => scrollToSection(item)}
+                  className="block w-full text-left capitalize text-gray-300 hover:text-orange-400 transition-colors font-medium"
+                >
                   {item}
-                </button>)}
-            </div>}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
       </nav>
 
@@ -158,7 +224,7 @@ const Index = () => {
           </div>
         </div>
         
-        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10 bg-[#f6e4fc]/0">
+        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
           {/* Enhanced Left Content */}
           <div className="space-y-10">
             <div className="space-y-6">
@@ -172,7 +238,7 @@ const Index = () => {
               <h1 className="text-7xl md:text-8xl lg:text-9xl font-black leading-none">
                 <span className="text-white drop-shadow-2xl">PRIYUNSHU</span>
                 <br />
-                <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 bg-clip-text animate-pulse text-[#e0e8d0]/0">
+                <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 bg-clip-text text-transparent">
                   SAHA
                 </span>
               </h1>
@@ -209,30 +275,39 @@ const Index = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button onClick={() => scrollToSection('projects')} className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white border-0 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25">
+              <Button
+                onClick={() => scrollToSection('projects')}
+                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white border-0 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
+              >
                 View My Work <ArrowRight className="ml-2" />
               </Button>
-              <Button onClick={() => scrollToSection('contact')} variant="outline" className="border-2 border-gray-400/30 hover:bg-gray-300 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 backdrop-blur-sm text-zinc-950">
+              <Button
+                onClick={() => scrollToSection('contact')}
+                variant="outline"
+                className="border-2 border-gray-400/30 hover:bg-gray-300 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 backdrop-blur-sm text-zinc-950"
+              >
                 Let's Connect
               </Button>
             </div>
           </div>
           
-          {/* Enhanced Right Content - Profile Section */}
+          {/* Enhanced Right Content - Profile Section with Real Image */}
           <div className="flex justify-center items-center relative">
             <div className="relative group">
               {/* Animated rings */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 animate-spin-slow opacity-75 blur-sm scale-110"></div>
               <div className="absolute inset-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-spin-slow opacity-50 blur-sm scale-105" style={{
-              animationDirection: 'reverse',
-              animationDuration: '8s'
-            }}></div>
+                animationDirection: 'reverse',
+                animationDuration: '8s'
+              }}></div>
               
-              {/* Profile container */}
+              {/* Profile container with real image */}
               <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm bg-gradient-to-br from-slate-800/50 to-slate-900/50 group-hover:scale-105 transition-all duration-500">
-                <div className="w-full h-full bg-gradient-to-br from-orange-500/20 via-violet-600/30 to-cyan-500/20 flex items-center justify-center text-8xl lg:text-9xl transform group-hover:scale-110 transition-transform duration-500">
-                  👨‍💻
-                </div>
+                <img 
+                  src="https://i.postimg.cc/qvgLpnkv/PSX-20240716-171349.jpg" 
+                  alt="Priyunshu Saha"
+                  className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-500"
+                />
                 
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"></div>
@@ -244,7 +319,9 @@ const Index = () => {
                 <span className="text-xs">GPA</span>
               </div>
               
-              <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-2xl px-6 py-3 font-semibold text-sm shadow-2xl animate-pulse">LETS COLAB !</div>
+              <div className="absolute -bottom-4 -left-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-2xl px-6 py-3 font-semibold text-sm shadow-2xl animate-pulse">
+                LETS COLAB !
+              </div>
               
               <div className="absolute top-1/2 -right-8 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-2xl animate-bounce delay-300">
                 <Sparkles size={24} />
@@ -324,17 +401,20 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {skills.map((skill, index) => <div key={skill.name} className="space-y-3">
+            {skills.map((skill, index) => (
+              <div key={skill.name} className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-white font-medium text-lg">{skill.name}</span>
                   <span className="text-amber-400 font-light">{skill.level}%</span>
                 </div>
                 <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                  <div className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-1000 ease-out" style={{
-                width: `${skill.level}%`
-              }} />
+                  <div
+                    className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-1000 ease-out"
+                    style={{ width: `${skill.level}%` }}
+                  />
                 </div>
-              </div>)}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -351,7 +431,8 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => <Card key={project.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
+            {projects.map((project, index) => (
+              <Card key={project.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
                 <CardContent className="p-8">
                   <div className={`w-full h-32 rounded-lg bg-gradient-to-r ${project.color} mb-6 flex items-center justify-center text-white text-2xl font-bold`}>
                     {project.title.split(' ')[0]}
@@ -361,12 +442,15 @@ const Index = () => {
                   <p className="text-gray-300 mb-6 text-sm leading-relaxed">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2">
-                    {project.tech.map(tech => <Badge key={tech} variant="outline" className="border-amber-400/30 text-amber-300 text-xs">
+                    {project.tech.map(tech => (
+                      <Badge key={tech} variant="outline" className="border-amber-400/30 text-amber-300 text-xs">
                         {tech}
-                      </Badge>)}
+                      </Badge>
+                    ))}
                   </div>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
@@ -384,18 +468,20 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => <Card key={service.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
+            {services.map((service, index) => (
+              <Card key={service.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
                 <CardContent className="p-8 text-center">
                   <div className="text-4xl mb-6">{service.icon}</div>
                   <h3 className="text-lg font-bold text-white mb-4 group-hover:text-amber-400 transition-colors">{service.title}</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">{service.description}</p>
                 </CardContent>
-              </Card>)}
+              </Card>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Contact Section */}
+      {/* Contact Section with EmailJS Integration */}
       <section id="contact" className="py-20 px-6 rounded-lg bg-slate-800">
         <div className="container mx-auto max-w-6xl">
           <div className="text-center mb-16">
@@ -444,16 +530,37 @@ const Index = () => {
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <Input placeholder="Your Name" className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12" required />
+                    <Input 
+                      name="name"
+                      placeholder="Your Name" 
+                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12" 
+                      required 
+                    />
                   </div>
                   <div>
-                    <Input type="email" placeholder="your.email@example.com" className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12" required />
+                    <Input 
+                      name="email"
+                      type="email" 
+                      placeholder="your.email@example.com" 
+                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12" 
+                      required 
+                    />
                   </div>
                   <div>
-                    <Textarea placeholder="Tell me about your project or idea..." rows={5} className="bg-white/5 border-white/20 text-white placeholder-gray-400 resize-none" required />
+                    <Textarea 
+                      name="message"
+                      placeholder="Tell me about your project or idea..." 
+                      rows={5} 
+                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 resize-none" 
+                      required 
+                    />
                   </div>
-                  <Button type="submit" className="w-full bg-amber-400 hover:bg-amber-500 text-black font-semibold h-12 tracking-wider">
-                    Send Message <ArrowRight className="ml-2 w-4 h-4" />
+                  <Button 
+                    type="submit" 
+                    disabled={isSubmitting}
+                    className="w-full bg-amber-400 hover:bg-amber-500 text-black font-semibold h-12 tracking-wider disabled:opacity-50"
+                  >
+                    {isSubmitting ? 'Sending...' : 'Send Message'} <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </form>
               </CardContent>
@@ -472,7 +579,7 @@ const Index = () => {
             <div className="text-gray-400 text-sm tracking-wider">BYE ! HOPE TO SEE YOU AGAIN</div>
             <div className="flex space-x-6 text-sm text-gray-400 tracking-wider">
               <span>COOOL !</span>
-              <span>202?</span>
+              <span>2024</span>
             </div>
           </div>
         </div>
@@ -493,6 +600,8 @@ const Index = () => {
           <span className="text-sm font-semibold">Bengali Tech ✦</span>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
+
 export default Index;
