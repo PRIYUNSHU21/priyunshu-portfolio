@@ -114,6 +114,19 @@ All colors MUST be HSL.
   }
 }
 
+@keyframes spin-slow {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 .animate-scroll {
   animation: scroll 20s linear infinite;
+}
+
+.animate-spin-slow {
+  animation: spin-slow 6s linear infinite;
 }
