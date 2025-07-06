@@ -281,11 +281,7 @@ const Index = () => {
               </div>
               
               <div className="space-y-4 text-gray-300 leading-relaxed">
-                <p>
-                  I'm a passionate B.Tech Computer Science student at BP Poddar Institute of Management and Technology, 
-                  currently maintaining a strong GPA of 8.8. My journey in technology is driven by curiosity and a 
-                  desire to solve real-world problems through innovative solutions.
-                </p>
+                <p>I'm a passionate B.Tech Computer Science student at B P Poddar Institute of Management and Technology. My journey in technology is driven by curiosity and a desire to solve real-world problems through innovative solutions.</p>
                 
                 <p>
                   My work focuses on building scalable systems and interactive applications, with a special interest 
