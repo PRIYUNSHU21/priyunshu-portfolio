@@ -6,28 +6,28 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     toast({
       title: "Message Sent!",
-      description: "Thanks for reaching out. I'll get back to you soon!",
+      description: "Thanks for reaching out. I'll get back to you soon!"
     });
   };
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
     setIsMenuOpen(false);
   };
-
   useEffect(() => {
     const handleScroll = () => {
       const sections = ['home', 'about', 'skills', 'projects', 'services', 'contact'];
@@ -41,68 +41,68 @@ const Index = () => {
       });
       if (current) setActiveSection(current);
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const skills = [
-    { name: 'Python', level: 90 },
-    { name: 'C++', level: 85 },
-    { name: 'C', level: 80 },
-    { name: 'Flutter/Dart', level: 85 },
-    { name: 'Flask', level: 80 },
-    { name: 'Firebase', level: 85 },
-    { name: 'AI/ML & NLP', level: 75 },
-    { name: 'Git/GitHub', level: 90 }
-  ];
-
-  const projects = [
-    {
-      title: 'BHAV – Bengali AI Chatbot',
-      description: 'AI-powered chatbot for Bengali interaction with complete website & mobile app integration.',
-      tech: ['NLP', 'LLM', 'Flutter', 'Flask'],
-      color: 'from-purple-500 to-pink-500'
-    },
-    {
-      title: 'Smart Attendance System',
-      description: 'Geofencing-based attendance tracker with real-time Firebase sync and location verification.',
-      tech: ['Flutter', 'Firebase', 'Geolocation'],
-      color: 'from-blue-500 to-cyan-500'
-    },
-    {
-      title: 'Automint',
-      description: 'Decentralized smart invoice platform for B2B transactions with complete design-to-deployment pipeline.',
-      tech: ['Backend', 'API', 'UI/UX', 'Database'],
-      color: 'from-green-500 to-teal-500'
-    }
-  ];
-
-  const services = [
-    {
-      title: 'Mobile App Development',
-      description: 'Cross-platform apps with Flutter focusing on performance and user experience',
-      icon: '📱'
-    },
-    {
-      title: 'AI Integration & Automation',
-      description: 'Custom AI solutions, chatbots, and intelligent automation systems',
-      icon: '🤖'
-    },
-    {
-      title: 'Backend API Development',
-      description: 'Scalable REST APIs and database architecture with Flask and Firebase',
-      icon: '⚡'
-    },
-    {
-      title: 'UI/UX Ideation',
-      description: 'User-centered design concepts and interactive prototypes (continuous learning)',
-      icon: '🎨'
-    }
-  ];
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-violet-950 to-indigo-950">
+  const skills = [{
+    name: 'Python',
+    level: 90
+  }, {
+    name: 'C++',
+    level: 85
+  }, {
+    name: 'C',
+    level: 80
+  }, {
+    name: 'Flutter/Dart',
+    level: 85
+  }, {
+    name: 'Flask',
+    level: 80
+  }, {
+    name: 'Firebase',
+    level: 85
+  }, {
+    name: 'AI/ML & NLP',
+    level: 75
+  }, {
+    name: 'Git/GitHub',
+    level: 90
+  }];
+  const projects = [{
+    title: 'BHAV – Bengali AI Chatbot',
+    description: 'AI-powered chatbot for Bengali interaction with complete website & mobile app integration.',
+    tech: ['NLP', 'LLM', 'Flutter', 'Flask'],
+    color: 'from-purple-500 to-pink-500'
+  }, {
+    title: 'Smart Attendance System',
+    description: 'Geofencing-based attendance tracker with real-time Firebase sync and location verification.',
+    tech: ['Flutter', 'Firebase', 'Geolocation'],
+    color: 'from-blue-500 to-cyan-500'
+  }, {
+    title: 'Automint',
+    description: 'Decentralized smart invoice platform for B2B transactions with complete design-to-deployment pipeline.',
+    tech: ['Backend', 'API', 'UI/UX', 'Database'],
+    color: 'from-green-500 to-teal-500'
+  }];
+  const services = [{
+    title: 'Mobile App Development',
+    description: 'Cross-platform apps with Flutter focusing on performance and user experience',
+    icon: '📱'
+  }, {
+    title: 'AI Integration & Automation',
+    description: 'Custom AI solutions, chatbots, and intelligent automation systems',
+    icon: '🤖'
+  }, {
+    title: 'Backend API Development',
+    description: 'Scalable REST APIs and database architecture with Flask and Firebase',
+    icon: '⚡'
+  }, {
+    title: 'UI/UX Ideation',
+    description: 'User-centered design concepts and interactive prototypes (continuous learning)',
+    icon: '🎨'
+  }];
+  return <div className="min-h-screen bg-gradient-to-br from-slate-950 via-violet-950 to-indigo-950">
       {/* Navigation */}
       <nav className="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-violet-500/20">
         <div className="container mx-auto px-6 py-4">
@@ -113,44 +113,23 @@ const Index = () => {
             
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className={`capitalize transition-all duration-300 font-medium tracking-wide text-sm ${
-                    activeSection === item 
-                      ? 'text-orange-400 scale-105' 
-                      : 'text-gray-300 hover:text-orange-400 hover:scale-105'
-                  }`}
-                >
+              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => <button key={item} onClick={() => scrollToSection(item)} className={`capitalize transition-all duration-300 font-medium tracking-wide text-sm ${activeSection === item ? 'text-orange-400 scale-105' : 'text-gray-300 hover:text-orange-400 hover:scale-105'}`}>
                   {item}
-                </button>
-              ))}
+                </button>)}
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-white"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
+            <button className="md:hidden text-white" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X /> : <Menu />}
             </button>
           </div>
 
           {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 space-y-4 bg-slate-900/80 backdrop-blur-lg rounded-xl p-6">
-              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map((item) => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="block w-full text-left capitalize text-gray-300 hover:text-orange-400 transition-colors font-medium"
-                >
+          {isMenuOpen && <div className="md:hidden mt-4 space-y-4 bg-slate-900/80 backdrop-blur-lg rounded-xl p-6">
+              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => <button key={item} onClick={() => scrollToSection(item)} className="block w-full text-left capitalize text-gray-300 hover:text-orange-400 transition-colors font-medium">
                   {item}
-                </button>
-              ))}
-            </div>
-          )}
+                </button>)}
+            </div>}
         </div>
       </nav>
 
@@ -230,17 +209,10 @@ const Index = () => {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4 pt-4">
-              <Button 
-                onClick={() => scrollToSection('projects')}
-                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white border-0 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
-              >
+              <Button onClick={() => scrollToSection('projects')} className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white border-0 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25">
                 View My Work <ArrowRight className="ml-2" />
               </Button>
-              <Button 
-                onClick={() => scrollToSection('contact')}
-                variant="outline"
-                className="border-2 border-gray-400/30 text-gray-300 hover:bg-gray-300 hover:text-slate-900 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 backdrop-blur-sm"
-              >
+              <Button onClick={() => scrollToSection('contact')} variant="outline" className="border-2 border-gray-400/30 text-gray-300 hover:bg-gray-300 hover:text-slate-900 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 backdrop-blur-sm">
                 Let's Connect
               </Button>
             </div>
@@ -251,7 +223,10 @@ const Index = () => {
             <div className="relative group">
               {/* Animated rings */}
               <div className="absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 animate-spin-slow opacity-75 blur-sm scale-110"></div>
-              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-spin-slow opacity-50 blur-sm scale-105" style={{ animationDirection: 'reverse', animationDuration: '8s' }}></div>
+              <div className="absolute inset-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-spin-slow opacity-50 blur-sm scale-105" style={{
+              animationDirection: 'reverse',
+              animationDuration: '8s'
+            }}></div>
               
               {/* Profile container */}
               <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm bg-gradient-to-br from-slate-800/50 to-slate-900/50 group-hover:scale-105 transition-all duration-500">
@@ -359,20 +334,17 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {skills.map((skill, index) => (
-              <div key={skill.name} className="space-y-3">
+            {skills.map((skill, index) => <div key={skill.name} className="space-y-3">
                 <div className="flex justify-between items-center">
                   <span className="text-white font-medium text-lg">{skill.name}</span>
                   <span className="text-amber-400 font-light">{skill.level}%</span>
                 </div>
                 <div className="h-1 bg-white/10 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-1000 ease-out"
-                    style={{ width: `${skill.level}%` }}
-                  />
+                  <div className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-1000 ease-out" style={{
+                width: `${skill.level}%`
+              }} />
                 </div>
-              </div>
-            ))}
+              </div>)}
           </div>
         </div>
       </section>
@@ -389,8 +361,7 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <Card key={project.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
+            {projects.map((project, index) => <Card key={project.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
                 <CardContent className="p-8">
                   <div className={`w-full h-32 rounded-lg bg-gradient-to-r ${project.color} mb-6 flex items-center justify-center text-white text-2xl font-bold`}>
                     {project.title.split(' ')[0]}
@@ -400,15 +371,12 @@ const Index = () => {
                   <p className="text-gray-300 mb-6 text-sm leading-relaxed">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2">
-                    {project.tech.map((tech) => (
-                      <Badge key={tech} variant="outline" className="border-amber-400/30 text-amber-300 text-xs">
+                    {project.tech.map(tech => <Badge key={tech} variant="outline" className="border-amber-400/30 text-amber-300 text-xs">
                         {tech}
-                      </Badge>
-                    ))}
+                      </Badge>)}
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -426,15 +394,13 @@ const Index = () => {
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {services.map((service, index) => (
-              <Card key={service.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
+            {services.map((service, index) => <Card key={service.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
                 <CardContent className="p-8 text-center">
                   <div className="text-4xl mb-6">{service.icon}</div>
                   <h3 className="text-lg font-bold text-white mb-4 group-hover:text-amber-400 transition-colors">{service.title}</h3>
                   <p className="text-gray-300 text-sm leading-relaxed">{service.description}</p>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -465,7 +431,7 @@ const Index = () => {
                   <div className="w-12 h-12 bg-amber-400/20 rounded-full flex items-center justify-center">
                     <Mail className="text-amber-400 w-5 h-5" />
                   </div>
-                  <span className="text-gray-300">priyunshu.dev@example.com</span>
+                  <span className="text-gray-300">priyunshu.cse123096@bppimt.ac.in</span>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="w-12 h-12 bg-amber-400/20 rounded-full flex items-center justify-center">
@@ -488,32 +454,15 @@ const Index = () => {
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
-                    <Input 
-                      placeholder="Your Name" 
-                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12"
-                      required
-                    />
+                    <Input placeholder="Your Name" className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12" required />
                   </div>
                   <div>
-                    <Input 
-                      type="email" 
-                      placeholder="your.email@example.com" 
-                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12"
-                      required
-                    />
+                    <Input type="email" placeholder="your.email@example.com" className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12" required />
                   </div>
                   <div>
-                    <Textarea 
-                      placeholder="Tell me about your project or idea..." 
-                      rows={5}
-                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 resize-none"
-                      required
-                    />
+                    <Textarea placeholder="Tell me about your project or idea..." rows={5} className="bg-white/5 border-white/20 text-white placeholder-gray-400 resize-none" required />
                   </div>
-                  <Button 
-                    type="submit" 
-                    className="w-full bg-amber-400 hover:bg-amber-500 text-black font-semibold h-12 tracking-wider"
-                  >
+                  <Button type="submit" className="w-full bg-amber-400 hover:bg-amber-500 text-black font-semibold h-12 tracking-wider">
                     Send Message <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
                 </form>
@@ -556,8 +505,6 @@ const Index = () => {
           <span className="text-sm font-semibold">Bengali Tech ✦</span>
         </div>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
