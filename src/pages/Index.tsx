@@ -283,11 +283,7 @@ const Index = () => {
               <div className="space-y-4 text-gray-300 leading-relaxed">
                 <p>I'm a passionate B.Tech Computer Science student at B P Poddar Institute of Management and Technology. My journey in technology is driven by curiosity and a desire to solve real-world problems through innovative solutions.</p>
                 
-                <p>
-                  My work focuses on building scalable systems and interactive applications, with a special interest 
-                  in serving the Bengali-speaking community through AI-powered solutions. I believe in the philosophy 
-                  of Propose → Evaluate → Innovate.
-                </p>
+                <p>My work focuses on building scalable systems and interactive applications, with a special interest in Artificial Intelligence, web3, Saas . I believe in the philosophy of Propose → Evaluate → Innovate.</p>
               </div>
             </div>
             
