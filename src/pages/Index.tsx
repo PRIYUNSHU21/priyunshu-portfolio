@@ -483,7 +483,7 @@ const Index = () => {
       </footer>
 
       {/* Scrolling skills ticker */}
-      <div className="fixed bottom-0 left-0 w-full bg-amber-400 text-black py-2 overflow-hidden z-40">
+      <div className="fixed bottom-0 left-0 w-full text-black py-2 overflow-hidden z-40 bg-[#c1c2dd] rounded-none">
         <div className="flex space-x-8 animate-scroll whitespace-nowrap">
           <span className="text-sm font-semibold">Mobile Development ✦</span>
           <span className="text-sm font-semibold">AI Integration ✦</span>
