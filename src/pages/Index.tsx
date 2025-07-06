@@ -301,7 +301,7 @@ const Index = () => {
                   <h3 className="text-2xl font-bold text-white mb-6">Education</h3>
                   <div className="space-y-4">
                     <div>
-                      <h4 className="text-lg font-semibold text-amber-400">
+                      <h4 className="font-semibold text-amber-400 text-lg">
                         B.Tech in Computer Science and Engineering
                       </h4>
                       <p className="text-gray-300 text-sm">BP Poddar Institute of Management and Technology</p>
