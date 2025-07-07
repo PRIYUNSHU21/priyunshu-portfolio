@@ -356,7 +356,7 @@ const Index = () => {
 
                   {/* 3D/Striking Name Effect */}
                   <h1
-                    className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tight animate-slideUp delay-300 cursor-pointer text-center select-none relative"
+                    className="text-2xl md:text-4xl lg:text-5xl xl:text-6xl font-extrabold leading-tight animate-slideUp delay-300 cursor-pointer text-center select-none relative"
                     style={{
                       fontFamily: 'Poppins, Montserrat, Arial, sans-serif',
                       fontWeight: 900,
