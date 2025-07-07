@@ -147,13 +147,13 @@ const Index = () => {
   }];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-violet-950 to-indigo-950">
+    <div className="min-h-screen bg-background">
       {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-slate-950/80 backdrop-blur-xl border-b border-violet-500/20">
+      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border">
         <div className="container mx-auto px-4 md:px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className="text-lg md:text-xl font-semibold tracking-wider text-white">
-              PRIYUNSHU SAHA
+            <div className="text-lg md:text-xl font-bold text-primary">
+              PSaha.
             </div>
             
             {/* Desktop Navigation */}
@@ -162,10 +162,10 @@ const Index = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`capitalize transition-all duration-300 font-medium tracking-wide text-sm ${
+                  className={`capitalize transition-all duration-300 font-medium text-sm ${
                     activeSection === item
-                      ? 'text-orange-400 scale-105'
-                      : 'text-gray-300 hover:text-orange-400 hover:scale-105'
+                      ? 'text-accent scale-105'
+                      : 'text-muted-foreground hover:text-accent hover:scale-105'
                   }`}
                 >
                   {item}
@@ -173,9 +173,16 @@ const Index = () => {
               ))}
             </div>
 
+            {/* Download CV Button */}
+            <Button 
+              className="hidden md:block bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6"
+            >
+              Download CV
+            </Button>
+
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-white"
+              className="md:hidden text-primary"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X /> : <Menu />}
@@ -184,12 +191,12 @@ const Index = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden mt-4 space-y-4 bg-slate-900/80 backdrop-blur-lg rounded-xl p-6">
+            <div className="md:hidden mt-4 space-y-4 bg-card backdrop-blur-lg rounded-xl p-6 border border-border">
               {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => (
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className="block w-full text-left capitalize text-gray-300 hover:text-orange-400 transition-colors font-medium"
+                  className="block w-full text-left capitalize text-muted-foreground hover:text-accent transition-colors font-medium"
                 >
                   {item}
                 </button>
@@ -199,103 +206,110 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* World-Class Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-        {/* Sophisticated Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-violet-950/50 to-slate-950">
-          {/* Dynamic gradient meshes */}
-          <div className="absolute top-0 left-0 w-full h-full">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-orange-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
-            <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-violet-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse delay-700"></div>
-            <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-gradient-to-r from-blue-500/8 to-teal-500/8 rounded-full blur-2xl animate-pulse delay-1000"></div>
-          </div>
-          
-          {/* Subtle grid pattern */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent"></div>
-        </div>
-
-        {/* Main Content */}
-        <div className="container mx-auto px-6 md:px-8 relative z-10">
-          <div className="text-center space-y-12 max-w-5xl mx-auto">
-            
-            {/* Refined Badge */}
-            <div className="inline-flex items-center space-x-3 bg-white/5 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10">
-              <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full animate-pulse"></div>
-              <span className="text-sm font-medium text-gray-300 tracking-wide">
-                Software Developer & AI Enthusiast
-              </span>
-            </div>
-
-            {/* Powerful Typography */}
-            <div className="space-y-8">
-              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tight">
-                <span className="block text-white drop-shadow-2xl">PRIYUNSHU</span>
-                <span className="block bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 bg-clip-text text-transparent">
-                  SAHA
-                </span>
-              </h1>
+      {/* Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
+        <div className="container mx-auto px-6 relative z-10">
+          <div className="max-w-6xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
               
-              <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
-                Building the future with <span className="text-orange-400 font-semibold">intelligent code</span> and 
-                <span className="text-violet-400 font-semibold"> innovative solutions</span>
-              </p>
-            </div>
-
-            {/* Streamlined CTA */}
-            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
-              <Button
-                onClick={() => scrollToSection('projects')}
-                className="group bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white border-0 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30 rounded-full"
-              >
-                View My Work 
-                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Button>
-              
-              <Button
-                onClick={() => scrollToSection('contact')}
-                variant="ghost"
-                className="text-gray-300 hover:text-white px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 backdrop-blur-sm"
-              >
-                Let's Connect
-              </Button>
-            </div>
-
-            {/* Profile Integration */}
-            <div className="relative pt-16">
-              <div className="relative inline-block">
-                {/* Subtle glow effect */}
-                <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 via-pink-500/20 to-violet-500/20 rounded-full blur-2xl scale-110 animate-pulse"></div>
-                
-                {/* Profile image */}
-                <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden border-2 border-white/20 shadow-2xl">
-                  <img 
-                    src="https://i.postimg.cc/qvgLpnkv/PSX-20240716-171349.jpg" 
-                    alt="Priyunshu Saha"
-                    className="w-full h-full object-cover object-center"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
+              {/* Left Content */}
+              <div className="space-y-8">
+                <div className="space-y-6">
+                  <h2 className="text-4xl md:text-5xl font-light text-foreground">
+                    Hi! I Am
+                  </h2>
+                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-accent leading-tight">
+                    PRIYUNSHU<br />SAHA.
+                  </h1>
                 </div>
                 
-                {/* Achievement badge */}
-                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-400 to-pink-500 text-white rounded-full w-12 h-12 md:w-14 md:h-14 flex flex-col items-center justify-center text-xs md:text-sm font-bold shadow-xl">
-                  <span className="text-sm md:text-base">8.8</span>
-                  <span className="text-[10px]">GPA</span>
+                <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-md">
+                  I build beautifully functional apps, and I love what I do.
+                </p>
+
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                  <Button
+                    onClick={() => scrollToSection('projects')}
+                    className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-full font-medium"
+                  >
+                    View Projects
+                    <ArrowRight className="ml-2 w-4 h-4" />
+                  </Button>
+                  
+                  <Button
+                    onClick={() => scrollToSection('contact')}
+                    variant="outline"
+                    className="border-border text-foreground hover:bg-muted px-8 py-4 rounded-full font-medium"
+                  >
+                    Let's Connect
+                  </Button>
+                </div>
+
+                {/* Social Links */}
+                <div className="flex space-x-4 pt-8">
+                  <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" 
+                     className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors">
+                    <Github className="w-5 h-5 text-accent" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer"
+                     className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors">
+                    <Linkedin className="w-5 h-5 text-accent" />
+                  </a>
+                  <a href="mailto:priyunshu.cse123096@bppimt.ac.in"
+                     className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors">
+                    <Mail className="w-5 h-5 text-accent" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Right Content - Profile & Stats */}
+              <div className="relative flex flex-col items-center space-y-8">
+                
+                {/* Experience Badge */}
+                <div className="absolute top-0 left-0 text-center">
+                  <div className="text-4xl md:text-5xl font-bold text-primary">02</div>
+                  <div className="text-sm text-muted-foreground uppercase tracking-wide">
+                    Years<br />Experience
+                  </div>
+                </div>
+
+                {/* Profile Image */}
+                <div className="relative">
+                  <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-card shadow-xl">
+                    <img 
+                      src="https://i.postimg.cc/qvgLpnkv/PSX-20240716-171349.jpg" 
+                      alt="Priyunshu Saha"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  
+                  {/* Decorative Elements */}
+                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent rounded-full"></div>
+                  <div className="absolute -bottom-6 -left-6 w-12 h-12 border-2 border-primary rounded-full"></div>
+                  
+                  {/* GPA Badge */}
+                  <div className="absolute -bottom-2 -right-2 bg-accent text-accent-foreground rounded-full w-16 h-16 flex flex-col items-center justify-center text-sm font-bold shadow-lg">
+                    <span className="text-base">8.8</span>
+                    <span className="text-xs">GPA</span>
+                  </div>
+                </div>
+
+                {/* Professional Title */}
+                <div className="text-right">
+                  <div className="text-2xl md:text-3xl font-light text-muted-foreground italic">Creative</div>
+                  <div className="text-3xl md:text-4xl font-bold text-primary">Developer.</div>
+                </div>
+
+                {/* Reviews/Status */}
+                <div className="bg-card rounded-xl p-4 shadow-lg border border-border">
+                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                    <span>Available for projects</span>
+                  </div>
                 </div>
               </div>
             </div>
-
-            {/* Status indicator */}
-            <div className="flex items-center justify-center space-x-3 text-sm text-gray-400">
-              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
-              <span>Available for exciting projects</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
-          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
