@@ -199,134 +199,103 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Enhanced Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center pt-20 px-4 md:px-6 relative overflow-hidden">
-        {/* Simplified Background Elements */}
-        <div className="absolute inset-0 bg-gray-950">
-          {/* Reduced gradient orbs for mobile */}
-          <div className="hidden md:block absolute top-1/4 right-1/4 w-96 h-96 bg-gradient-to-r from-orange-500/15 via-pink-500/15 to-violet-500/15 rounded-full blur-3xl animate-pulse"></div>
-          <div className="hidden md:block absolute bottom-1/4 left-1/4 w-80 h-80 bg-gradient-to-r from-blue-500/15 via-cyan-500/15 to-teal-500/15 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-48 md:w-72 h-48 md:h-72 bg-gradient-to-r from-violet-500/8 to-purple-500/8 rounded-full blur-2xl"></div>
+      {/* World-Class Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
+        {/* Sophisticated Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-slate-950 via-violet-950/50 to-slate-950">
+          {/* Dynamic gradient meshes */}
+          <div className="absolute top-0 left-0 w-full h-full">
+            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-r from-orange-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-1/3 right-1/3 w-80 h-80 bg-gradient-to-r from-violet-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse delay-700"></div>
+            <div className="absolute top-1/2 right-1/4 w-64 h-64 bg-gradient-to-r from-blue-500/8 to-teal-500/8 rounded-full blur-2xl animate-pulse delay-1000"></div>
+          </div>
           
-          {/* Simplified geometric patterns - hidden on mobile */}
-          <div className="hidden lg:block absolute top-20 right-20 w-24 h-24 border border-orange-400/20 rotate-45 animate-spin-slow"></div>
-          <div className="hidden lg:block absolute bottom-32 left-16 w-16 h-16 border border-cyan-400/20 rotate-12"></div>
+          {/* Subtle grid pattern */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/[0.02] to-transparent"></div>
         </div>
-        
-        <div className="container mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
-          {/* Enhanced Left Content */}
-          <div className="space-y-10">
-            <div className="space-y-6">
-              <div className="flex items-center space-x-3 mb-6">
-                <div className="w-12 h-1 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full"></div>
-                <div className="text-sm uppercase tracking-[0.4em] text-orange-400 font-semibold">
-                  B.Tech CSE Student & Developer
-                </div>
-              </div>
-              
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black leading-none">
-                <span className="text-white drop-shadow-2xl">PRIYUNSHU</span>
-                <br />
-                <span className="bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 bg-clip-text text-transparent">
+
+        {/* Main Content */}
+        <div className="container mx-auto px-6 md:px-8 relative z-10">
+          <div className="text-center space-y-12 max-w-5xl mx-auto">
+            
+            {/* Refined Badge */}
+            <div className="inline-flex items-center space-x-3 bg-white/5 backdrop-blur-xl rounded-full px-6 py-3 border border-white/10">
+              <div className="w-2 h-2 bg-gradient-to-r from-orange-400 to-pink-400 rounded-full animate-pulse"></div>
+              <span className="text-sm font-medium text-gray-300 tracking-wide">
+                Software Developer & AI Enthusiast
+              </span>
+            </div>
+
+            {/* Powerful Typography */}
+            <div className="space-y-8">
+              <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-black leading-[0.9] tracking-tight">
+                <span className="block text-white drop-shadow-2xl">PRIYUNSHU</span>
+                <span className="block bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 bg-clip-text text-transparent">
                   SAHA
                 </span>
               </h1>
               
-              <div className="text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl text-gray-200 font-bold tracking-[0.1em] md:tracking-[0.2em]">
-                <span className="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
-                  SOFTWARE DEVELOPER
-                </span>
-              </div>
-            </div>
-            
-            <div className="space-y-6 max-w-2xl">
-              <p className="text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed font-light">
-                Crafting <span className="text-orange-400 font-semibold">intelligent solutions</span> and 
-                <span className="text-violet-400 font-semibold"> scalable applications</span> with a focus on 
-                <span className="text-cyan-400 font-semibold"> Bengali language technology</span>
-              </p>
-              
-              <div className="flex flex-wrap gap-2 md:gap-3">
-                <Badge className="bg-orange-500/20 text-orange-300 border-orange-400/30 px-3 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium">
-                  AI & NLP Expert
-                </Badge>
-                <Badge className="bg-violet-500/20 text-violet-300 border-violet-400/30 px-3 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium">
-                  Mobile Developer
-                </Badge>
-                <Badge className="bg-cyan-500/20 text-cyan-300 border-cyan-400/30 px-3 md:px-4 py-1 md:py-2 text-xs md:text-sm font-medium">
-                  Backend Architect
-                </Badge>
-              </div>
-              
-              <p className="text-xs md:text-sm uppercase tracking-[0.2em] md:tracking-[0.3em] text-gray-400 font-medium">
-                Innovating Beyond Code | AI, Apps & Bengali Intelligence
+              <p className="text-xl md:text-2xl lg:text-3xl text-gray-300 font-light max-w-3xl mx-auto leading-relaxed">
+                Building the future with <span className="text-orange-400 font-semibold">intelligent code</span> and 
+                <span className="text-violet-400 font-semibold"> innovative solutions</span>
               </p>
             </div>
-            
-            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 pt-4">
+
+            {/* Streamlined CTA */}
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-8">
               <Button
                 onClick={() => scrollToSection('projects')}
-                className="bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white border-0 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/25"
+                className="group bg-gradient-to-r from-orange-500 to-pink-500 hover:from-orange-600 hover:to-pink-600 text-white border-0 px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-orange-500/30 rounded-full"
               >
-                View My Work <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5" />
+                View My Work 
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Button>
+              
               <Button
                 onClick={() => scrollToSection('contact')}
-                variant="outline"
-                className="border-2 border-gray-400/30 hover:bg-gray-300 px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 backdrop-blur-sm text-zinc-950"
+                variant="ghost"
+                className="text-gray-300 hover:text-white px-8 py-4 text-lg font-semibold tracking-wide transition-all duration-300 hover:scale-105 rounded-full border border-white/20 hover:border-white/40 hover:bg-white/5 backdrop-blur-sm"
               >
                 Let's Connect
               </Button>
             </div>
-          </div>
-          
-          {/* Simplified Right Content - Profile Section */}
-          <div className="flex justify-center items-center relative mt-10 lg:mt-0">
-            <div className="relative group">
-              {/* Simplified animated rings - hidden on mobile */}
-              <div className="hidden md:block absolute inset-0 rounded-full bg-gradient-to-r from-orange-400 via-pink-500 to-violet-500 animate-spin-slow opacity-60 blur-sm scale-110"></div>
-              <div className="hidden md:block absolute inset-2 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 animate-spin-slow opacity-40 blur-sm scale-105" style={{
-                animationDirection: 'reverse',
-                animationDuration: '8s'
-              }}></div>
-              
-              {/* Profile container with responsive sizing */}
-              <div className="relative w-64 h-64 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 rounded-full overflow-hidden border-4 border-white/20 backdrop-blur-sm bg-gradient-to-br from-slate-800/50 to-slate-900/50 group-hover:scale-105 transition-all duration-500">
-                <img 
-                  src="https://i.postimg.cc/qvgLpnkv/PSX-20240716-171349.jpg" 
-                  alt="Priyunshu Saha"
-                  className="w-full h-full object-cover object-center transform group-hover:scale-110 transition-transform duration-500"
-                />
+
+            {/* Profile Integration */}
+            <div className="relative pt-16">
+              <div className="relative inline-block">
+                {/* Subtle glow effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-orange-400/20 via-pink-500/20 to-violet-500/20 rounded-full blur-2xl scale-110 animate-pulse"></div>
                 
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/30 to-transparent"></div>
+                {/* Profile image */}
+                <div className="relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 rounded-full overflow-hidden border-2 border-white/20 shadow-2xl">
+                  <img 
+                    src="https://i.postimg.cc/qvgLpnkv/PSX-20240716-171349.jpg" 
+                    alt="Priyunshu Saha"
+                    className="w-full h-full object-cover object-center"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent"></div>
+                </div>
+                
+                {/* Achievement badge */}
+                <div className="absolute -top-2 -right-2 bg-gradient-to-r from-orange-400 to-pink-500 text-white rounded-full w-12 h-12 md:w-14 md:h-14 flex flex-col items-center justify-center text-xs md:text-sm font-bold shadow-xl">
+                  <span className="text-sm md:text-base">8.8</span>
+                  <span className="text-[10px]">GPA</span>
+                </div>
               </div>
-              
-              {/* Simplified floating elements - reduced on mobile */}
-              <div className="absolute -top-4 -right-4 md:-top-6 md:-right-6 bg-gradient-to-r from-orange-400 to-pink-500 text-white rounded-2xl w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 flex flex-col items-center justify-center font-bold text-sm md:text-base lg:text-lg shadow-2xl animate-bounce">
-                <span className="text-lg md:text-xl lg:text-2xl">8.8</span>
-                <span className="text-xs">GPA</span>
-              </div>
-              
-              <div className="hidden sm:block absolute -bottom-4 -left-4 bg-gradient-to-r from-cyan-400 to-blue-500 text-white rounded-2xl px-4 py-2 md:px-6 md:py-3 font-semibold text-xs md:text-sm shadow-2xl animate-pulse">
-                LETS COLAB !
-              </div>
-              
-              <div className="hidden md:block absolute top-1/2 -right-6 lg:-right-8 bg-gradient-to-r from-violet-500 to-purple-500 text-white rounded-full w-12 h-12 lg:w-16 lg:h-16 flex items-center justify-center shadow-2xl animate-bounce delay-300">
-                <Sparkles size={20} />
-              </div>
+            </div>
+
+            {/* Status indicator */}
+            <div className="flex items-center justify-center space-x-3 text-sm text-gray-400">
+              <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+              <span>Available for exciting projects</span>
             </div>
           </div>
         </div>
-        
-        {/* Enhanced bottom tagline */}
-        <div className="absolute bottom-8 md:bottom-12 left-1/2 transform -translate-x-1/2 text-center px-4">
-          <div className="flex items-center space-x-2 md:space-x-4 bg-slate-900/30 backdrop-blur-md rounded-full px-4 md:px-8 py-2 md:py-4 border border-white/10">
-            <span className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
-            <p className="text-gray-300 text-xs md:text-sm tracking-wider font-medium">
-              Currently Building Amazing Digital Experiences
-            </p>
-            <span className="w-2 h-2 bg-orange-400 rounded-full animate-pulse delay-500"></span>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/50 rounded-full mt-2 animate-pulse"></div>
           </div>
         </div>
       </section>
