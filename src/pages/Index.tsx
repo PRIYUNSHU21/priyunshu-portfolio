@@ -1,4 +1,5 @@
-import { useState, useEffect } from 'react';
+// (removed duplicate TypingLoopText definition from top of file)
+import React, { useState, useEffect } from 'react';
 import { ArrowRight, Menu, X, Mail, ExternalLink, Github, Linkedin, Sparkles, Code2, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
@@ -6,9 +7,13 @@ import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { useToast } from '@/hooks/use-toast';
+// @ts-ignore
 import emailjs from '@emailjs/browser';
 
+
 const Index = () => {
+  // Academic chip triggers profile image background glow
+  const [showProfileGlow, setShowProfileGlow] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -115,7 +120,8 @@ const Index = () => {
     title: 'BHAV – Bengali AI Chatbot',
     description: 'AI-powered chatbot for Bengali interaction with complete website & mobile app integration.',
     tech: ['NLP', 'LLM', 'Flutter', 'Flask'],
-    color: 'from-purple-500 to-pink-500'
+    color: 'from-purple-500 to-pink-500',
+    link: 'https://bhav-ai.carrd.co/'
   }, {
     title: 'Smart Attendance System',
     description: 'Geofencing-based attendance tracker with real-time Firebase sync and location verification.',
@@ -145,6 +151,41 @@ const Index = () => {
     description: 'User-centered design concepts and interactive prototypes (continuous learning)',
     icon: '🎨'
   }];
+
+
+  // Glow pulse state for GPA badge
+  const [showGlow, setShowGlow] = useState(false);
+
+  // Easter egg state
+  const [showEgg, setShowEgg] = useState(false);
+
+  // Automated vertical skill carousel
+  const skillChips = ['Python', 'Flutter', 'AI/ML', 'Firebase'];
+  const [currentSkill, setCurrentSkill] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentSkill((prev) => (prev + 1) % skillChips.length);
+    }, 1500);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Hide glow after animation
+  useEffect(() => {
+    if (showGlow) {
+      const timeout = setTimeout(() => setShowGlow(false), 700);
+      return () => clearTimeout(timeout);
+    }
+    return undefined;
+  }, [showGlow]);
+
+  // Hide easter egg after 2.5s
+  useEffect(() => {
+    if (showEgg) {
+      const timeout = setTimeout(() => setShowEgg(false), 2500);
+      return () => clearTimeout(timeout);
+    }
+    return undefined;
+  }, [showEgg]);
 
   return (
     <div className="min-h-screen bg-background">
@@ -213,106 +254,261 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Modern Hero Section */}
+      {/* Enhanced Hero Section */}
       <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 md:pt-20">
+        {/* Animated Background */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-accent/20 to-secondary/20 rounded-full blur-xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-24 h-24 bg-gradient-to-r from-secondary/20 to-accent/20 rounded-full blur-xl animate-pulse delay-1000"></div>
+          <div className="absolute top-3/4 left-1/3 w-20 h-20 bg-gradient-to-r from-accent/10 to-secondary/10 rounded-full blur-xl animate-pulse delay-2000"></div>
+        </div>
+
         <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[85vh]">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[85vh] px-2 sm:px-0">
               
-              {/* Left Content */}
-              <div className="order-2 lg:order-1 space-y-6 md:space-y-8 text-center lg:text-left">
-                <div className="space-y-4 md:space-y-6">
-                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground">
-                    Hi! I Am
-                  </h2>
-                  <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-accent leading-tight bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">
-                    PRIYUNSHU<br />SAHA.
-                  </h1>
+              {/* Right Content - Profile & Stats (now first column, image larger) */}
+              <div className="order-1 lg:order-1 flex flex-col items-center space-y-8 animate-fadeInRight">
+                {/* Enhanced Profile Image (bigger) */}
+                <div className="relative flex flex-col items-center group w-56 h-56 sm:w-72 sm:h-72 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem] mb-8 mt-16">
+                  {/* Rotating Ring */}
+                  <div className="absolute inset-0 w-full h-full rounded-full border-2 border-accent/30 animate-spin-slow"></div>
+                  {/* Profile Glow on B.Tech CSE click */}
+                  {showProfileGlow && (
+                    <div className="absolute inset-0 rounded-full pointer-events-none animate-profile-glow bg-gradient-to-r from-accent/40 to-secondary/40 opacity-80 z-10"></div>
+                  )}
+                  <div className="relative w-full h-full flex items-center justify-center">
+                    <div className="w-full h-full rounded-full overflow-hidden border-4 border-card shadow-elegant bg-card hover:shadow-2xl transition-all duration-500 hover:scale-105 cursor-pointer flex items-center justify-center">
+                      <img 
+                        src="https://i.postimg.cc/qvgLpnkv/PSX-20240716-171349.jpg" 
+                        alt="Priyunshu Saha"
+                        className="w-full h-full object-cover hover:scale-110 transition-transform duration-700 rounded-full"
+                      />
+                      {/* Overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-accent/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-full"></div>
+                    </div>
+                    {/* Interactive GPA Badge - visually below the image and centered */}
+                    <div
+                      className="absolute left-1/2 -bottom-10 transform -translate-x-1/2 bg-gradient-to-r from-accent to-secondary text-accent-foreground rounded-full w-16 h-16 md:w-20 md:h-20 flex flex-col items-center justify-center text-base font-bold shadow-elegant hover:shadow-2xl transition-all duration-300 hover:scale-110 cursor-pointer hover:rotate-12 group z-10"
+                      onClick={() => setShowGlow(true)}
+                      style={{ outline: 'none' }}
+                    >
+                      {/* Glow pulse ring */}
+                      {showGlow && (
+                        <div className="absolute -inset-4 md:-inset-5 rounded-full pointer-events-none animate-gpa-glow bg-gradient-to-r from-accent/40 to-secondary/40 opacity-80 z-0"></div>
+                      )}
+                      <span className="text-lg md:text-xl group-hover:animate-pulse z-10">8.8</span>
+                      <span className="text-xs md:text-sm z-10">GPA</span>
+                    </div>
+                  </div>
+                  {/* Animated Decorative Elements */}
+                  <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-8 h-8 md:w-10 md:h-10 bg-gradient-to-r from-accent to-secondary rounded-full shadow-soft animate-pulse hover:animate-bounce cursor-pointer"></div>
+                  <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-12 h-12 md:w-16 md:h-16 border-2 border-primary rounded-full bg-background shadow-soft animate-pulse delay-1000 hover:animate-spin cursor-pointer"></div>
                 </div>
-                
-                <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-light max-w-lg mx-auto lg:mx-0 leading-relaxed">
-                  I build beautifully functional apps, and I love what I do.
-                </p>
-
-                {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
-                  <Button
-                    onClick={() => scrollToSection('projects')}
-                    className="bg-gradient-to-r from-accent to-secondary hover:shadow-lg shadow-accent/25 text-accent-foreground px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:scale-105"
+                {/* Floating Academic Badge (lowered and changed) */}
+                {/* Cool floating chip with icon and animation */}
+                {/* Animated floating chip moved to top-left, away from text and image */}
+                <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 z-20 animate-float">
+                  <div
+                    className="flex items-center gap-3 bg-gradient-to-r from-accent to-secondary text-accent-foreground rounded-full px-5 py-2 md:px-7 md:py-3 shadow-elegant border-2 border-accent/30 backdrop-blur-md hover:shadow-2xl transition-all duration-300 hover:scale-105 cursor-pointer relative"
+                    onClick={() => {
+                      setShowProfileGlow(true);
+                      setTimeout(() => setShowProfileGlow(false), 1200);
+                    }}
                   >
-                    View Projects
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                  
-                  <Button
-                    onClick={() => scrollToSection('contact')}
-                    variant="outline"
-                    className="border-2 border-border hover:border-accent text-foreground hover:bg-accent hover:text-accent-foreground px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:scale-105"
-                  >
-                    Let's Connect
-                  </Button>
+                    <span className="text-2xl md:text-3xl animate-bounce">🎓</span>
+                    <span className="font-bold text-base md:text-lg tracking-wide">B.Tech CSE</span>
+                    <span className="text-xs md:text-sm font-medium tracking-widest bg-background/60 rounded-full px-3 py-1 ml-2 animate-pulse">2023–2027</span>
+                  </div>
                 </div>
-
-                {/* Social Links */}
-                <div className="flex space-x-4 pt-6 justify-center lg:justify-start">
-                  <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" 
-                     className="w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft">
-                    <Github className="w-5 h-5 text-accent hover:text-accent-foreground" />
-                  </a>
-                  <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer"
-                     className="w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft">
-                    <Linkedin className="w-5 h-5 text-accent hover:text-accent-foreground" />
-                  </a>
-                  <a href="mailto:priyunshu.cse123096@bppimt.ac.in"
-                     className="w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft">
-                    <Mail className="w-5 h-5 text-accent hover:text-accent-foreground" />
-                  </a>
+                {/* Animated Professional Title */}
+                <div className="flex flex-col items-center justify-center animate-slideUp delay-1000 mb-8">
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-light text-muted-foreground italic hover:text-accent transition-colors cursor-pointer text-center">Creative</div>
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary hover:text-accent transition-colors cursor-pointer text-center">Developer.</div>
+                </div>
+                {/* Enhanced Status Card */}
+                <div className="bg-card rounded-2xl p-4 md:p-6 shadow-soft border border-border backdrop-blur-sm hover:shadow-elegant transition-all duration-300 hover:scale-105 cursor-pointer animate-slideUp delay-1200">
+                  <div className="flex items-center space-x-3 text-base md:text-lg text-muted-foreground">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-sm"></div>
+                    <span className="font-medium">Available for projects</span>
+                    <div className="w-2 h-2 bg-accent rounded-full animate-ping"></div>
+                  </div>
+                </div>
+                {/* Quick Stats */}
+                <div className="grid grid-cols-2 gap-4 w-full max-w-xs animate-slideUp delay-1400">
+                  <div className="text-center p-3 bg-card rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-105 cursor-pointer">
+                    <div className="text-2xl font-bold text-accent">3</div>
+                    <div className="text-xs text-muted-foreground">Projects</div>
+                  </div>
+                  <div className="text-center p-3 bg-card rounded-xl shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-105 cursor-pointer">
+                    <div className="text-2xl font-bold text-accent">8</div>
+                    <div className="text-xs text-muted-foreground">Technologies</div>
+                  </div>
                 </div>
               </div>
 
-              {/* Right Content - Profile & Stats */}
-              <div className="order-1 lg:order-2 relative flex flex-col items-center space-y-6 md:space-y-8">
-                
-                {/* Experience Badge */}
-                <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 text-center z-10">
-                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">02</div>
-                  <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide font-medium">
-                    Years<br />Experience
-                  </div>
-                </div>
+              {/* Left Content (now second column) */}
+              <div className="order-2 lg:order-2 space-y-6 md:space-y-8 text-center lg:text-left animate-fadeInLeft">
+                <div className="space-y-4 md:space-y-6">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground animate-slideUp">
+                    Hi! I Am
+                  </h2>
 
-                {/* Profile Image */}
-                <div className="relative">
-                  <div className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-card shadow-elegant bg-card">
-                    <img 
-                      src="https://i.postimg.cc/qvgLpnkv/PSX-20240716-171349.jpg" 
-                      alt="Priyunshu Saha"
-                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
-                    />
-                  </div>
-                  
-                  {/* Decorative Elements */}
-                  <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-accent to-secondary rounded-full shadow-soft"></div>
-                  <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-8 h-8 md:w-12 md:h-12 border-2 border-primary rounded-full bg-background shadow-soft"></div>
-                  
-                  {/* GPA Badge */}
-                  <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-accent to-secondary text-accent-foreground rounded-full w-14 h-14 md:w-16 md:h-16 flex flex-col items-center justify-center text-sm font-bold shadow-elegant">
-                    <span className="text-base md:text-lg">8.8</span>
-                    <span className="text-xs">GPA</span>
-                  </div>
+                  {/* 3D/Striking Name Effect */}
+                  <h1
+                    className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-tight animate-slideUp delay-300 cursor-pointer text-center select-none relative"
+                    style={{
+                      fontFamily: 'Poppins, Montserrat, Arial, sans-serif',
+                      fontWeight: 900,
+                      letterSpacing: '0.04em',
+                      textTransform: 'uppercase',
+                      color: 'var(--accent)',
+                      textShadow: '0 2px 16px var(--accent), 0 1px 0 #fff8, 0 8px 32px var(--secondary)',
+                      filter: 'drop-shadow(0 8px 32px var(--secondary))',
+                    }}
+                  >
+                    {/* PRIYUNSHU on first line, SAHA on second, both animated */}
+                    <span style={{ display: 'block', lineHeight: 1.1 }}>
+                      {Array.from('PRIYUNSHU').map((char, i) => (
+                        <span
+                          key={i}
+                          style={{
+                            display: 'inline-block',
+                            animation: `floatLetter 2.2s ease-in-out ${0.08 * i}s infinite`,
+                            color: 'var(--accent)',
+                            textShadow: '0 2px 16px var(--accent), 0 1px 0 #fff8, 0 8px 32px var(--secondary)',
+                            filter: 'drop-shadow(0 8px 32px var(--secondary))',
+                            transition: 'transform 0.2s',
+                          }}
+                        >
+                          {char}
+                        </span>
+                      ))}
+                    </span>
+                    <span style={{ display: 'block', lineHeight: 1.1 }}>
+                      {Array.from('SAHA').map((char, i) => (
+                        <span
+                          key={i}
+                          style={{
+                            display: 'inline-block',
+                            animation: `floatLetter 2.2s ease-in-out ${0.08 * (i + 8)}s infinite`,
+                            color: 'var(--accent)',
+                            textShadow: '0 2px 16px var(--accent), 0 1px 0 #fff8, 0 8px 32px var(--secondary)',
+                            filter: 'drop-shadow(0 8px 32px var(--secondary))',
+                            transition: 'transform 0.2s',
+                          }}
+                        >
+                          {char}
+                        </span>
+                      ))}
+                    </span>
+                    <style>{`
+                      @keyframes floatLetter {
+                        0%, 100% { transform: translateY(0); }
+                        20% { transform: translateY(-12px) scale(1.08) rotate(-2deg); }
+                        40% { transform: translateY(0) scale(1); }
+                        60% { transform: translateY(8px) scale(0.98) rotate(2deg); }
+                        80% { transform: translateY(0); }
+                      }
+                    `}</style>
+                  </h1>
                 </div>
-
-                {/* Professional Title */}
-                <div className="text-center lg:text-right">
-                  <div className="text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground italic">Creative</div>
-                  <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary">Developer.</div>
+                <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-light max-w-lg mx-auto lg:mx-0 leading-relaxed animate-slideUp delay-500">
+                  I build beautifully functional apps, and I love what I do.
+                </p>
+                {/* Typing Animation */}
+                <div className="text-accent font-semibold text-lg animate-slideUp delay-700">
+                  <span
+                    className="animate-typing whitespace-nowrap overflow-x-auto block text-base md:text-lg lg:text-xl"
+                    style={{ WebkitOverflowScrolling: 'touch' }}
+                  >
+                    { "< Developer | AI Enthusiast | Flutter Expert />" }
+                  </span>
                 </div>
-
-                {/* Status Card */}
-                <div className="bg-card rounded-2xl p-4 md:p-6 shadow-soft border border-border backdrop-blur-sm">
-                  <div className="flex items-center space-x-3 text-sm md:text-base text-muted-foreground">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-sm"></div>
-                    <span className="font-medium">Available for projects</span>
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start animate-slideUp delay-900">
+                  <Button
+                    onClick={() => scrollToSection('projects')}
+                    className="group bg-gradient-to-r from-accent to-secondary hover:from-secondary hover:to-accent hover:shadow-xl shadow-accent/25 text-accent-foreground px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 transform hover:rotate-1 w-full sm:w-auto"
+                  >
+                    <Sparkles className="mr-2 w-5 h-5 group-hover:animate-spin" />
+                    View Projects
+                    <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Button>
+                  <Button
+                    onClick={() => scrollToSection('contact')}
+                    variant="outline"
+                    className="group border-2 border-border hover:border-accent text-foreground hover:bg-accent hover:text-accent-foreground px-6 py-3 sm:px-8 sm:py-4 rounded-full font-semibold text-base transition-all duration-300 hover:scale-105 transform hover:-rotate-1 w-full sm:w-auto"
+                  >
+                    <Zap className="mr-2 w-5 h-5 group-hover:animate-pulse" />
+                    Let's Connect
+                  </Button>
+                </div>
+                {/* Enhanced Social Links */}
+                <div className="flex space-x-4 pt-6 justify-center lg:justify-start animate-slideUp delay-1100 text-[0.9rem] sm:text-base">
+                  <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" 
+                     className="group w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft hover:shadow-lg hover:rotate-12">
+                    <Github className="w-5 h-5 text-accent group-hover:text-accent-foreground group-hover:scale-110 transition-all" />
+                  </a>
+                  <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer"
+                     className="group w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft hover:shadow-lg hover:-rotate-12">
+                    <Linkedin className="w-5 h-5 text-accent group-hover:text-accent-foreground group-hover:scale-110 transition-all" />
+                  </a>
+                  <a href="mailto:priyunshu.cse123096@bppimt.ac.in"
+                     className="group w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft hover:shadow-lg hover:rotate-12">
+                    <Mail className="w-5 h-5 text-accent group-hover:text-accent-foreground group-hover:scale-110 transition-all" />
+                  </a>
+                </div>
+                {/* Interactive Skills Preview with innovative effect */}
+                <div className="flex items-center justify-center my-12 animate-slideUp delay-1300">
+                  <div
+                    key={skillChips[currentSkill]}
+                    className={`transition-all duration-700 ease-in-out transform-gpu cursor-pointer relative group ${showEgg ? 'animate-wiggle' : ''}`}
+                    style={{
+                      margin: '2.5rem',
+                      padding: '2.5rem',
+                      borderRadius: '2rem',
+                      background: 'rgba(255,255,255,0.18)',
+                      boxShadow: '0 8px 32px 0 rgba(31,38,135,0.18), 0 2px 8px 0 rgba(56,189,248,0.10)',
+                      backdropFilter: 'blur(16px)',
+                      WebkitBackdropFilter: 'blur(16px)',
+                      border: '1.5px solid rgba(255,255,255,0.25)',
+                      minWidth: '13rem',
+                      minHeight: '4.5rem',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: '1.5rem',
+                      opacity: 1,
+                      scale: 1.08,
+                    }}
+                    onClick={() => setShowEgg(true)}
+                    onMouseDown={e => e.currentTarget.classList.add('scale-95')}
+                    onMouseUp={e => e.currentTarget.classList.remove('scale-95')}
+                    onMouseLeave={e => e.currentTarget.classList.remove('scale-95')}
+                  >
+                    <Code2 className="inline w-9 h-9 text-accent drop-shadow-lg animate-pulse" />
+                    <span className="font-extrabold text-3xl text-primary tracking-wide" style={{letterSpacing:'0.04em'}}>{skillChips[currentSkill]}</span>
+                    {/* Innovative effect: Matrix-style code rain */}
+                    {showEgg && (
+                      <>
+                        <div className="pointer-events-none absolute inset-0 z-40 flex items-center justify-center animate-matrix-fade">
+                          <div className="matrix-rain w-full h-full flex flex-row items-end justify-center">
+                            {[...Array(12)].map((_, i) => (
+                              <span key={i} className="matrix-char text-accent/80 text-lg md:text-2xl select-none" style={{animationDelay: `${i * 0.08}s`}}>
+                                {String.fromCharCode(0x30A0 + Math.floor(Math.random() * 96))}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                        <div className="absolute left-1/2 -top-12 transform -translate-x-1/2 z-50 bg-background/90 text-primary px-4 py-2 rounded-lg shadow-lg border border-accent/30 animate-fadeIn text-sm font-semibold flex items-center gap-2 whitespace-nowrap">
+                          <span role="img" aria-label="matrix">🟩</span>
+                          Welcome to the Matrix of Skills!
+                        </div>
+                      </>
+                    )}
+                    {/* Click ripple effect */}
+                    <span className="absolute inset-0 rounded-2xl group-active:scale-90 group-active:bg-accent/10 transition-transform duration-150 pointer-events-none" />
                   </div>
                 </div>
               </div>
@@ -413,13 +609,22 @@ const Index = () => {
             {projects.map((project, index) => (
               <Card key={project.title} className="bg-card border-border shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-105 group">
                 <CardContent className="p-6 md:p-8">
-                  <div className={`w-full h-32 rounded-xl bg-gradient-to-r ${project.color} mb-6 flex items-center justify-center text-white text-xl md:text-2xl font-bold shadow-soft`}>
-                    {project.title.split(' ')[0]}
+                  <div className={`w-full h-32 rounded-xl bg-gradient-to-r ${project.color} mb-6 flex items-center justify-center shadow-soft`}>
+                    {project.title === 'BHAV – Bengali AI Chatbot' ? (
+                      <span className="text-white text-xl md:text-2xl font-bold">BHAV</span>
+                    ) : (
+                      <span className="text-white text-xl md:text-2xl font-bold">{project.title.split(' ')[0]}</span>
+                    )}
                   </div>
-                  
-                  <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors">{project.title}</h3>
+                  <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors">
+                    {project.title}
+                    {project.link && (
+                      <a href={project.link} target="_blank" rel="noopener noreferrer" className="ml-2 inline-block align-middle text-accent hover:text-secondary transition-colors" title="Visit BHAV Website">
+                        <ExternalLink className="inline w-5 h-5 mb-1" />
+                      </a>
+                    )}
+                  </h3>
                   <p className="text-muted-foreground mb-6 text-sm leading-relaxed">{project.description}</p>
-                  
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map(tech => (
                       <Badge key={tech} variant="outline" className="border-accent/30 text-accent text-xs hover:bg-accent hover:text-accent-foreground transition-colors">
@@ -460,88 +665,97 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Modern Contact Section */}
-      <section id="contact" className="py-16 md:py-24 px-4 md:px-6 bg-muted">
-        <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-12 md:mb-16">
-            <div className="text-sm uppercase tracking-[0.3em] text-accent font-semibold mb-4">Contact</div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
-              LET'S<br />
-              <span className="text-accent">CONNECT</span>
+      {/* Modern Contact Section - Standardized & Enhanced */}
+      <section id="contact" className="py-16 md:py-28 px-2 sm:px-4 md:px-6 bg-muted/80 relative">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center mb-10 md:mb-20">
+            <div className="inline-block px-4 py-1 rounded-full bg-gradient-to-r from-accent to-secondary text-white font-bold tracking-widest text-xs uppercase mb-4 shadow-lg border border-accent/40">Contact</div>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight drop-shadow-xl" style={{textShadow: '0 2px 16px #000, 0 1px 0 #fff8'}}>
+              Let's <span className="text-accent drop-shadow-xl" style={{textShadow: '0 2px 16px #000, 0 1px 0 #fff8'}}>Connect</span>
             </h2>
+            <p className="mt-3 sm:mt-4 text-lg sm:text-xl md:text-2xl max-w-2xl mx-auto font-bold text-white drop-shadow-xl" style={{textShadow: '0 2px 16px #000, 0 1px 0 #fff8'}}>
+              Whether you have a question, want to collaborate, or just want to say hi, my inbox is always open.<br className="hidden sm:block" /> I'll try my best to get back to you!
+            </p>
           </div>
-          
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
-            <div className="space-y-8">
-              <div className="space-y-6 text-center lg:text-left">
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground">Get In Touch</h3>
-                <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
-                  I'm always excited to discuss new projects, innovative ideas, or opportunities to bring 
-                  your vision to life. Let's create something amazing together!
-                </p>
+
+          <div className="flex flex-col md:grid md:grid-cols-2 gap-8 md:gap-16 items-start">
+            {/* Contact Info Card */}
+            <div className="bg-card rounded-2xl shadow-elegant border border-border p-5 sm:p-8 flex flex-col gap-6 sm:gap-8 justify-center animate-fadeInLeft w-full">
+              <div className="flex flex-col gap-4 sm:gap-6">
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-accent/20 to-secondary/20">
+                    <Mail className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-muted-foreground font-medium">Email</span>
+                    <a href="mailto:priyunshu.cse123096@bppimt.ac.in" className="text-foreground font-semibold hover:text-accent transition-colors text-sm sm:text-base md:text-lg break-all">priyunshu.cse123096@bppimt.ac.in</a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-accent/20 to-secondary/20">
+                    <Linkedin className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-muted-foreground font-medium">LinkedIn</span>
+                    <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:text-accent transition-colors text-sm sm:text-base md:text-lg break-all">linkedin.com/in/priyunshu-saha</a>
+                  </div>
+                </div>
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center rounded-xl bg-gradient-to-br from-accent/20 to-secondary/20">
+                    <Github className="w-5 h-5 sm:w-6 sm:h-6 text-accent" />
+                  </div>
+                  <div className="flex flex-col">
+                    <span className="text-xs text-muted-foreground font-medium">GitHub</span>
+                    <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" className="text-foreground font-semibold hover:text-accent transition-colors text-sm sm:text-base md:text-lg break-all">github.com/PRIYUNSHU21</a>
+                  </div>
+                </div>
               </div>
-              
-              <div className="space-y-6">
-                <div className="flex items-center space-x-4 justify-center lg:justify-start">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
-                    <Mail className="text-accent w-5 h-5" />
-                  </div>
-                  <span className="text-muted-foreground text-sm md:text-base">priyunshu.cse123096@bppimt.ac.in</span>
-                </div>
-                <div className="flex items-center space-x-4 justify-center lg:justify-start">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
-                    <Linkedin className="text-accent w-5 h-5" />
-                  </div>
-                  <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer" 
-                     className="text-muted-foreground hover:text-accent transition-colors text-sm md:text-base">
-                    LinkedIn Profile
-                  </a>
-                </div>
-                <div className="flex items-center space-x-4 justify-center lg:justify-start">
-                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
-                    <Github className="text-accent w-5 h-5" />
-                  </div>
-                  <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" 
-                     className="text-muted-foreground hover:text-accent transition-colors text-sm md:text-base">
-                    GitHub Profile
-                  </a>
-                </div>
+              <div className="mt-6 sm:mt-8 flex flex-col gap-1 sm:gap-2">
+                <span className="text-xs text-muted-foreground font-medium">Location</span>
+                <span className="text-sm sm:text-base text-foreground font-semibold">Kolkata, India</span>
               </div>
             </div>
-            
-            <Card className="bg-card border-border shadow-soft">
-              <CardContent className="p-6 md:p-8">
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div>
+
+            {/* Contact Form Card */}
+            <Card className="bg-card border-border shadow-elegant rounded-2xl animate-fadeInRight w-full mt-8 md:mt-0">
+              <CardContent className="p-5 sm:p-8 md:p-10">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-5 sm:gap-6">
+                  <div className="flex flex-col gap-1 sm:gap-2">
+                    <label htmlFor="name" className="text-sm font-medium text-muted-foreground">Name</label>
                     <Input 
+                      id="name"
                       name="name"
                       placeholder="Your Name" 
-                      className="bg-input border-border text-foreground placeholder-muted-foreground h-12 rounded-xl" 
+                      className="bg-input border-border text-foreground placeholder-muted-foreground h-11 sm:h-12 rounded-xl text-sm sm:text-base" 
                       required 
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1 sm:gap-2">
+                    <label htmlFor="email" className="text-sm font-medium text-muted-foreground">Email</label>
                     <Input 
+                      id="email"
                       name="email"
                       type="email" 
                       placeholder="your.email@example.com" 
-                      className="bg-input border-border text-foreground placeholder-muted-foreground h-12 rounded-xl" 
+                      className="bg-input border-border text-foreground placeholder-muted-foreground h-11 sm:h-12 rounded-xl text-sm sm:text-base" 
                       required 
                     />
                   </div>
-                  <div>
+                  <div className="flex flex-col gap-1 sm:gap-2">
+                    <label htmlFor="message" className="text-sm font-medium text-muted-foreground">Message</label>
                     <Textarea 
+                      id="message"
                       name="message"
                       placeholder="Tell me about your project or idea..." 
-                      rows={5} 
-                      className="bg-input border-border text-foreground placeholder-muted-foreground resize-none rounded-xl" 
+                      rows={4} 
+                      className="bg-input border-border text-foreground placeholder-muted-foreground resize-none rounded-xl text-sm sm:text-base" 
                       required 
                     />
                   </div>
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-accent to-secondary hover:shadow-lg shadow-accent/25 text-accent-foreground font-semibold h-12 rounded-xl tracking-wide disabled:opacity-50 transition-all duration-300"
+                    className="w-full bg-gradient-to-r from-accent to-secondary hover:shadow-lg shadow-accent/25 text-accent-foreground font-semibold h-11 sm:h-12 rounded-xl tracking-wide disabled:opacity-50 transition-all duration-300 mt-1 sm:mt-2 text-sm sm:text-base"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'} <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
@@ -552,17 +766,21 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Modern Footer */}
+      {/* Modern Footer with Bhagavad Gita Shloka */}
       <footer className="py-12 px-4 md:px-6 border-t border-border bg-background">
         <div className="container mx-auto max-w-6xl">
-          <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+          <div className="flex flex-col items-center justify-center text-center space-y-4">
             <div className="text-foreground font-bold tracking-wider text-lg">
               PRIYUNSHU SAHA
             </div>
-            <div className="text-muted-foreground text-sm tracking-wider">Thanks for visiting! Hope to see you again</div>
-            <div className="flex space-x-6 text-sm text-muted-foreground tracking-wider">
-              <span>Made with ❤️</span>
-              <span>2024</span>
+            <div className="bg-gradient-to-r from-accent/20 to-secondary/20 rounded-xl px-6 py-4 shadow-soft border border-accent/30 max-w-2xl">
+              <div className="text-base md:text-lg font-semibold text-primary mb-2">भगवद्गीता २.४७</div>
+              <div className="text-md md:text-lg font-bold text-accent mb-2">कर्मण्येवाधिकारस्ते मा फलेषु कदाचन ।<br/>मा कर्मफलहेतुर्भूर्मा ते सङ्गोऽस्त्वकर्मणि ॥</div>
+              <div className="text-sm md:text-base text-muted-foreground italic mb-1">karmaṇy-evādhikāras te mā phaleṣhu kadāchana<br/>mā karma-phala-hetur bhūr mā te saṅgo 'stvakarmaṇi</div>
+              <div className="text-sm md:text-base text-foreground mt-2">You have the right to perform your actions, but not to the fruits thereof. Let not the results of action be your motive, nor let your attachment be to inaction.</div>
+            </div>
+            <div className="flex space-x-6 text-sm text-muted-foreground tracking-wider mt-2">
+              <span>Visit again</span>
             </div>
           </div>
         </div>
@@ -585,6 +803,7 @@ const Index = () => {
       </div>
     </div>
   );
-};
+}
 
 export default Index;
+
