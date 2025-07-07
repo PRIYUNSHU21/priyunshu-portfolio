@@ -148,11 +148,11 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      {/* Navigation */}
-      <nav className="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-xl border-b border-border">
-        <div className="container mx-auto px-4 md:px-6 py-4">
-          <div className="flex justify-between items-center">
-            <div className="text-lg md:text-xl font-bold text-primary">
+      {/* Modern Navigation */}
+      <nav className="fixed top-0 w-full z-50 bg-background/95 backdrop-blur-lg border-b border-border shadow-sm">
+        <div className="container mx-auto px-4 md:px-6">
+          <div className="flex justify-between items-center h-16 md:h-20">
+            <div className="text-xl md:text-2xl font-bold text-primary">
               PSaha.
             </div>
             
@@ -162,10 +162,10 @@ const Index = () => {
                 <button
                   key={item}
                   onClick={() => scrollToSection(item)}
-                  className={`capitalize transition-all duration-300 font-medium text-sm ${
+                  className={`capitalize transition-all duration-300 font-medium text-sm hover:scale-105 ${
                     activeSection === item
-                      ? 'text-accent scale-105'
-                      : 'text-muted-foreground hover:text-accent hover:scale-105'
+                      ? 'text-accent font-semibold'
+                      : 'text-muted-foreground hover:text-accent'
                   }`}
                 >
                   {item}
@@ -175,137 +175,144 @@ const Index = () => {
 
             {/* Download CV Button */}
             <Button 
-              className="hidden md:block bg-accent hover:bg-accent/90 text-accent-foreground rounded-full px-6"
+              className="hidden md:flex bg-gradient-to-r from-accent to-secondary hover:shadow-lg shadow-accent/25 text-accent-foreground rounded-full px-6 py-2 font-semibold transition-all duration-300 hover:scale-105"
             >
               Download CV
             </Button>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-primary"
+              className="md:hidden p-2 text-primary hover:bg-muted rounded-lg transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
-              {isMenuOpen ? <X /> : <Menu />}
+              {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden mt-4 space-y-4 bg-card backdrop-blur-lg rounded-xl p-6 border border-border">
-              {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => (
-                <button
-                  key={item}
-                  onClick={() => scrollToSection(item)}
-                  className="block w-full text-left capitalize text-muted-foreground hover:text-accent transition-colors font-medium"
+            <div className="md:hidden absolute top-full left-0 right-0 bg-card border-b border-border shadow-lg">
+              <div className="p-4 space-y-4">
+                {['home', 'about', 'skills', 'projects', 'services', 'contact'].map(item => (
+                  <button
+                    key={item}
+                    onClick={() => scrollToSection(item)}
+                    className="block w-full text-left py-3 px-4 capitalize text-muted-foreground hover:text-accent hover:bg-muted rounded-lg transition-all duration-200 font-medium"
+                  >
+                    {item}
+                  </button>
+                ))}
+                <Button 
+                  className="w-full mt-4 bg-gradient-to-r from-accent to-secondary text-accent-foreground rounded-full py-3 font-semibold"
                 >
-                  {item}
-                </button>
-              ))}
+                  Download CV
+                </Button>
+              </div>
             </div>
           )}
         </div>
       </nav>
 
-      {/* Hero Section */}
-      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-20">
-        <div className="container mx-auto px-6 relative z-10">
-          <div className="max-w-6xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+      {/* Modern Hero Section */}
+      <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden pt-16 md:pt-20">
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
+          <div className="max-w-7xl mx-auto">
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-16 items-center min-h-[85vh]">
               
               {/* Left Content */}
-              <div className="space-y-8">
-                <div className="space-y-6">
-                  <h2 className="text-4xl md:text-5xl font-light text-foreground">
+              <div className="order-2 lg:order-1 space-y-6 md:space-y-8 text-center lg:text-left">
+                <div className="space-y-4 md:space-y-6">
+                  <h2 className="text-3xl md:text-4xl lg:text-5xl font-light text-foreground">
                     Hi! I Am
                   </h2>
-                  <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-accent leading-tight">
+                  <h1 className="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-accent leading-tight bg-gradient-to-r from-accent to-secondary bg-clip-text text-transparent">
                     PRIYUNSHU<br />SAHA.
                   </h1>
                 </div>
                 
-                <p className="text-xl md:text-2xl text-muted-foreground font-light max-w-md">
+                <p className="text-lg md:text-xl lg:text-2xl text-muted-foreground font-light max-w-lg mx-auto lg:mx-0 leading-relaxed">
                   I build beautifully functional apps, and I love what I do.
                 </p>
 
                 {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-4 pt-4">
+                <div className="flex flex-col sm:flex-row gap-4 pt-4 justify-center lg:justify-start">
                   <Button
                     onClick={() => scrollToSection('projects')}
-                    className="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-full font-medium"
+                    className="bg-gradient-to-r from-accent to-secondary hover:shadow-lg shadow-accent/25 text-accent-foreground px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:scale-105"
                   >
                     View Projects
-                    <ArrowRight className="ml-2 w-4 h-4" />
+                    <ArrowRight className="ml-2 w-5 h-5" />
                   </Button>
                   
                   <Button
                     onClick={() => scrollToSection('contact')}
                     variant="outline"
-                    className="border-border text-foreground hover:bg-muted px-8 py-4 rounded-full font-medium"
+                    className="border-2 border-border hover:border-accent text-foreground hover:bg-accent hover:text-accent-foreground px-8 py-4 rounded-full font-semibold text-base transition-all duration-300 hover:scale-105"
                   >
                     Let's Connect
                   </Button>
                 </div>
 
                 {/* Social Links */}
-                <div className="flex space-x-4 pt-8">
+                <div className="flex space-x-4 pt-6 justify-center lg:justify-start">
                   <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" 
-                     className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors">
-                    <Github className="w-5 h-5 text-accent" />
+                     className="w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft">
+                    <Github className="w-5 h-5 text-accent hover:text-accent-foreground" />
                   </a>
                   <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer"
-                     className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors">
-                    <Linkedin className="w-5 h-5 text-accent" />
+                     className="w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft">
+                    <Linkedin className="w-5 h-5 text-accent hover:text-accent-foreground" />
                   </a>
                   <a href="mailto:priyunshu.cse123096@bppimt.ac.in"
-                     className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center hover:bg-accent/20 transition-colors">
-                    <Mail className="w-5 h-5 text-accent" />
+                     className="w-12 h-12 bg-accent/10 hover:bg-accent hover:text-accent-foreground rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 shadow-soft">
+                    <Mail className="w-5 h-5 text-accent hover:text-accent-foreground" />
                   </a>
                 </div>
               </div>
 
               {/* Right Content - Profile & Stats */}
-              <div className="relative flex flex-col items-center space-y-8">
+              <div className="order-1 lg:order-2 relative flex flex-col items-center space-y-6 md:space-y-8">
                 
                 {/* Experience Badge */}
-                <div className="absolute top-0 left-0 text-center">
-                  <div className="text-4xl md:text-5xl font-bold text-primary">02</div>
-                  <div className="text-sm text-muted-foreground uppercase tracking-wide">
+                <div className="absolute -top-4 -left-4 md:-top-6 md:-left-6 text-center z-10">
+                  <div className="text-3xl md:text-4xl lg:text-5xl font-bold text-primary">02</div>
+                  <div className="text-xs md:text-sm text-muted-foreground uppercase tracking-wide font-medium">
                     Years<br />Experience
                   </div>
                 </div>
 
                 {/* Profile Image */}
                 <div className="relative">
-                  <div className="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden border-4 border-card shadow-xl">
+                  <div className="w-56 h-56 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-card shadow-elegant bg-card">
                     <img 
                       src="https://i.postimg.cc/qvgLpnkv/PSX-20240716-171349.jpg" 
                       alt="Priyunshu Saha"
-                      className="w-full h-full object-cover"
+                      className="w-full h-full object-cover hover:scale-110 transition-transform duration-700"
                     />
                   </div>
                   
                   {/* Decorative Elements */}
-                  <div className="absolute -top-4 -right-4 w-8 h-8 bg-accent rounded-full"></div>
-                  <div className="absolute -bottom-6 -left-6 w-12 h-12 border-2 border-primary rounded-full"></div>
+                  <div className="absolute -top-3 -right-3 md:-top-4 md:-right-4 w-6 h-6 md:w-8 md:h-8 bg-gradient-to-r from-accent to-secondary rounded-full shadow-soft"></div>
+                  <div className="absolute -bottom-4 -left-4 md:-bottom-6 md:-left-6 w-8 h-8 md:w-12 md:h-12 border-2 border-primary rounded-full bg-background shadow-soft"></div>
                   
                   {/* GPA Badge */}
-                  <div className="absolute -bottom-2 -right-2 bg-accent text-accent-foreground rounded-full w-16 h-16 flex flex-col items-center justify-center text-sm font-bold shadow-lg">
-                    <span className="text-base">8.8</span>
+                  <div className="absolute -bottom-2 -right-2 bg-gradient-to-r from-accent to-secondary text-accent-foreground rounded-full w-14 h-14 md:w-16 md:h-16 flex flex-col items-center justify-center text-sm font-bold shadow-elegant">
+                    <span className="text-base md:text-lg">8.8</span>
                     <span className="text-xs">GPA</span>
                   </div>
                 </div>
 
                 {/* Professional Title */}
-                <div className="text-right">
-                  <div className="text-2xl md:text-3xl font-light text-muted-foreground italic">Creative</div>
-                  <div className="text-3xl md:text-4xl font-bold text-primary">Developer.</div>
+                <div className="text-center lg:text-right">
+                  <div className="text-xl md:text-2xl lg:text-3xl font-light text-muted-foreground italic">Creative</div>
+                  <div className="text-2xl md:text-3xl lg:text-4xl font-bold text-primary">Developer.</div>
                 </div>
 
-                {/* Reviews/Status */}
-                <div className="bg-card rounded-xl p-4 shadow-lg border border-border">
-                  <div className="flex items-center space-x-2 text-sm text-muted-foreground">
-                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                    <span>Available for projects</span>
+                {/* Status Card */}
+                <div className="bg-card rounded-2xl p-4 md:p-6 shadow-soft border border-border backdrop-blur-sm">
+                  <div className="flex items-center space-x-3 text-sm md:text-base text-muted-foreground">
+                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-sm"></div>
+                    <span className="font-medium">Available for projects</span>
                   </div>
                 </div>
               </div>
@@ -314,74 +321,74 @@ const Index = () => {
         </div>
       </section>
 
-      {/* About Section */}
-      <section id="about" className="py-20 px-6 bg-gray-950 rounded-none">
-        <div className="container mx-auto">
-          <div className="grid md:grid-cols-2 gap-16 items-center">
-            <div className="space-y-8">
-              <div>
-                <div className="text-sm uppercase tracking-[0.3em] text-amber-400 mb-4">About Me</div>
-                <h2 className="text-4xl md:text-6xl font-bold text-white leading-tight">
+      {/* Modern About Section */}
+      <section id="about" className="py-16 md:py-24 px-4 md:px-6 bg-muted">
+        <div className="container mx-auto max-w-6xl">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            <div className="space-y-8 text-center lg:text-left">
+              <div className="space-y-4">
+                <div className="text-sm uppercase tracking-[0.3em] text-accent font-semibold">About Me</div>
+                <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
                   PASSIONATE<br />
-                  <span className="text-amber-400">INNOVATOR</span>
+                  <span className="text-accent">INNOVATOR</span>
                 </h2>
               </div>
               
-              <div className="space-y-4 text-gray-300 leading-relaxed">
+              <div className="space-y-6 text-muted-foreground leading-relaxed text-base md:text-lg">
                 <p>I'm a passionate B.Tech Computer Science student at B P Poddar Institute of Management and Technology. My journey in technology is driven by curiosity and a desire to solve real-world problems through innovative solutions.</p>
                 
-                <p>My work focuses on building scalable systems and interactive applications, with a special interest in Artificial Intelligence, web3, Saas . I believe in the philosophy of Propose → Evaluate → Innovate.</p>
+                <p>My work focuses on building scalable systems and interactive applications, with a special interest in Artificial Intelligence, web3, and SaaS. I believe in the philosophy of Propose → Evaluate → Innovate.</p>
               </div>
             </div>
             
             <div className="space-y-8">
-              <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
-                <CardContent className="p-8">
-                  <h3 className="text-2xl font-bold text-white mb-6">Education</h3>
+              <Card className="bg-card border-border shadow-soft hover:shadow-elegant transition-all duration-300">
+                <CardContent className="p-6 md:p-8">
+                  <h3 className="text-2xl font-bold text-foreground mb-6">Education</h3>
                   <div className="space-y-4">
                     <div>
-                      <h4 className="font-semibold text-amber-400 text-lg">
+                      <h4 className="font-semibold text-accent text-lg mb-2">
                         B.Tech in Computer Science and Engineering
                       </h4>
-                      <p className="text-gray-300 text-sm">BP Poddar Institute of Management and Technology</p>
-                      <p className="text-gray-400">2023–2027 | Current GPA: 8.8</p>
+                      <p className="text-muted-foreground text-sm">BP Poddar Institute of Management and Technology</p>
+                      <p className="text-muted-foreground text-sm">2023–2027 | Current GPA: 8.8</p>
                     </div>
                   </div>
                 </CardContent>
               </Card>
               
-              <div className="flex flex-wrap gap-3">
-                <Badge variant="secondary" className="bg-amber-400/20 text-amber-300 px-4 py-2">Curious</Badge>
-                <Badge variant="secondary" className="bg-purple-500/20 text-purple-300 px-4 py-2">Flexible</Badge>
-                <Badge variant="secondary" className="bg-cyan-500/20 text-cyan-300 px-4 py-2">Innovation-Driven</Badge>
-                <Badge variant="secondary" className="bg-green-500/20 text-green-300 px-4 py-2">Fast Learner</Badge>
+              <div className="flex flex-wrap gap-3 justify-center lg:justify-start">
+                <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-2 hover:bg-accent hover:text-accent-foreground transition-colors">Curious</Badge>
+                <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-2 hover:bg-accent hover:text-accent-foreground transition-colors">Flexible</Badge>
+                <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-2 hover:bg-accent hover:text-accent-foreground transition-colors">Innovation-Driven</Badge>
+                <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-2 hover:bg-accent hover:text-accent-foreground transition-colors">Fast Learner</Badge>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-6">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-sm uppercase tracking-[0.3em] text-amber-400 mb-4">Expertise</div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white">
+      {/* Modern Skills Section */}
+      <section id="skills" className="py-16 md:py-24 px-4 md:px-6 bg-background">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="text-sm uppercase tracking-[0.3em] text-accent font-semibold mb-4">Expertise</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
               SKILLS &<br />
-              <span className="text-amber-400">TECHNOLOGIES</span>
+              <span className="text-accent">TECHNOLOGIES</span>
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto">
             {skills.map((skill, index) => (
-              <div key={skill.name} className="space-y-3">
+              <div key={skill.name} className="space-y-3 p-4 md:p-6 rounded-xl bg-card border border-border shadow-soft hover:shadow-elegant transition-all duration-300">
                 <div className="flex justify-between items-center">
-                  <span className="text-white font-medium text-lg">{skill.name}</span>
-                  <span className="text-amber-400 font-light">{skill.level}%</span>
+                  <span className="text-foreground font-semibold text-base md:text-lg">{skill.name}</span>
+                  <span className="text-accent font-bold text-sm md:text-base">{skill.level}%</span>
                 </div>
-                <div className="h-1 bg-white/10 rounded-full overflow-hidden">
+                <div className="h-2 bg-muted rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-1000 ease-out"
+                    className="h-full bg-gradient-to-r from-accent to-secondary rounded-full transition-all duration-1000 ease-out"
                     style={{ width: `${skill.level}%` }}
                   />
                 </div>
@@ -391,31 +398,31 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section id="projects" className="py-20 px-6 bg-[#101010]/[0.86]">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-sm uppercase tracking-[0.3em] text-amber-400 mb-4">Portfolio</div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white">
+      {/* Modern Projects Section */}
+      <section id="projects" className="py-16 md:py-24 px-4 md:px-6 bg-muted">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="text-sm uppercase tracking-[0.3em] text-accent font-semibold mb-4">Portfolio</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
               FEATURED<br />
-              <span className="text-amber-400">PROJECTS</span>
+              <span className="text-accent">PROJECTS</span>
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {projects.map((project, index) => (
-              <Card key={project.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
-                <CardContent className="p-8">
-                  <div className={`w-full h-32 rounded-lg bg-gradient-to-r ${project.color} mb-6 flex items-center justify-center text-white text-2xl font-bold`}>
+              <Card key={project.title} className="bg-card border-border shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-105 group">
+                <CardContent className="p-6 md:p-8">
+                  <div className={`w-full h-32 rounded-xl bg-gradient-to-r ${project.color} mb-6 flex items-center justify-center text-white text-xl md:text-2xl font-bold shadow-soft`}>
                     {project.title.split(' ')[0]}
                   </div>
                   
-                  <h3 className="text-xl font-bold text-white mb-4 group-hover:text-amber-400 transition-colors">{project.title}</h3>
-                  <p className="text-gray-300 mb-6 text-sm leading-relaxed">{project.description}</p>
+                  <h3 className="text-xl font-bold text-foreground mb-4 group-hover:text-accent transition-colors">{project.title}</h3>
+                  <p className="text-muted-foreground mb-6 text-sm leading-relaxed">{project.description}</p>
                   
                   <div className="flex flex-wrap gap-2">
                     {project.tech.map(tech => (
-                      <Badge key={tech} variant="outline" className="border-amber-400/30 text-amber-300 text-xs">
+                      <Badge key={tech} variant="outline" className="border-accent/30 text-accent text-xs hover:bg-accent hover:text-accent-foreground transition-colors">
                         {tech}
                       </Badge>
                     ))}
@@ -427,25 +434,25 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Services Section */}
-      <section id="services" className="py-20 px-6 bg-[#03000a]">
-        <div className="container mx-auto">
-          <div className="text-center mb-16">
-            <div className="text-sm uppercase tracking-[0.3em] text-amber-400 mb-4">Services</div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white mb-4">
+      {/* Modern Services Section */}
+      <section id="services" className="py-16 md:py-24 px-4 md:px-6 bg-background">
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="text-sm uppercase tracking-[0.3em] text-accent font-semibold mb-4">Services</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground mb-4">
               WHAT I CAN<br />
-              <span className="text-amber-400">HELP YOU WITH</span>
+              <span className="text-accent">HELP YOU WITH</span>
             </h2>
-            <p className="text-gray-400 tracking-wider">ALWAYS EAGER TO EXPLORE NEW TOOLS AND TECHNOLOGIES</p>
+            <p className="text-muted-foreground tracking-wide">Always eager to explore new tools and technologies</p>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
             {services.map((service, index) => (
-              <Card key={service.title} className="bg-white/5 border-white/10 backdrop-blur-sm hover:bg-white/10 transition-all duration-300 hover:scale-105 group">
-                <CardContent className="p-8 text-center">
-                  <div className="text-4xl mb-6">{service.icon}</div>
-                  <h3 className="text-lg font-bold text-white mb-4 group-hover:text-amber-400 transition-colors">{service.title}</h3>
-                  <p className="text-gray-300 text-sm leading-relaxed">{service.description}</p>
+              <Card key={service.title} className="bg-card border-border shadow-soft hover:shadow-elegant transition-all duration-300 hover:scale-105 group">
+                <CardContent className="p-6 md:p-8 text-center">
+                  <div className="text-4xl mb-6 group-hover:scale-110 transition-transform duration-300">{service.icon}</div>
+                  <h3 className="text-base md:text-lg font-bold text-foreground mb-4 group-hover:text-accent transition-colors">{service.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -453,61 +460,63 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Contact Section with EmailJS Integration */}
-      <section id="contact" className="py-20 px-6 rounded-lg bg-slate-800">
+      {/* Modern Contact Section */}
+      <section id="contact" className="py-16 md:py-24 px-4 md:px-6 bg-muted">
         <div className="container mx-auto max-w-6xl">
-          <div className="text-center mb-16">
-            <div className="text-sm uppercase tracking-[0.3em] text-amber-400 mb-4">Contact</div>
-            <h2 className="text-4xl md:text-6xl font-bold text-white">
+          <div className="text-center mb-12 md:mb-16">
+            <div className="text-sm uppercase tracking-[0.3em] text-accent font-semibold mb-4">Contact</div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground">
               LET'S<br />
-              <span className="text-amber-400">CONNECT</span>
+              <span className="text-accent">CONNECT</span>
             </h2>
           </div>
           
-          <div className="grid md:grid-cols-2 gap-16">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16">
             <div className="space-y-8">
-              <div className="space-y-6">
-                <h3 className="text-2xl font-bold text-white">Get In Touch</h3>
-                <p className="text-gray-300 leading-relaxed text-lg">
+              <div className="space-y-6 text-center lg:text-left">
+                <h3 className="text-2xl md:text-3xl font-bold text-foreground">Get In Touch</h3>
+                <p className="text-muted-foreground leading-relaxed text-base md:text-lg">
                   I'm always excited to discuss new projects, innovative ideas, or opportunities to bring 
                   your vision to life. Let's create something amazing together!
                 </p>
               </div>
               
               <div className="space-y-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-amber-400/20 rounded-full flex items-center justify-center">
-                    <Mail className="text-amber-400 w-5 h-5" />
+                <div className="flex items-center space-x-4 justify-center lg:justify-start">
+                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                    <Mail className="text-accent w-5 h-5" />
                   </div>
-                  <span className="text-gray-300">priyunshu.cse123096@bppimt.ac.in</span>
+                  <span className="text-muted-foreground text-sm md:text-base">priyunshu.cse123096@bppimt.ac.in</span>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-amber-400/20 rounded-full flex items-center justify-center">
-                    <Linkedin className="text-amber-400 w-5 h-5" />
+                <div className="flex items-center space-x-4 justify-center lg:justify-start">
+                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                    <Linkedin className="text-accent w-5 h-5" />
                   </div>
-                  <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  <a href="https://www.linkedin.com/in/priyunshu-saha/" target="_blank" rel="noopener noreferrer" 
+                     className="text-muted-foreground hover:text-accent transition-colors text-sm md:text-base">
                     LinkedIn Profile
                   </a>
                 </div>
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-amber-400/20 rounded-full flex items-center justify-center">
-                    <Github className="text-amber-400 w-5 h-5" />
+                <div className="flex items-center space-x-4 justify-center lg:justify-start">
+                  <div className="w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center">
+                    <Github className="text-accent w-5 h-5" />
                   </div>
-                  <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-amber-400 transition-colors">
+                  <a href="https://github.com/PRIYUNSHU21" target="_blank" rel="noopener noreferrer" 
+                     className="text-muted-foreground hover:text-accent transition-colors text-sm md:text-base">
                     GitHub Profile
                   </a>
                 </div>
               </div>
             </div>
             
-            <Card className="bg-white/5 border-white/10 backdrop-blur-sm">
-              <CardContent className="p-8">
+            <Card className="bg-card border-border shadow-soft">
+              <CardContent className="p-6 md:p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
                   <div>
                     <Input 
                       name="name"
                       placeholder="Your Name" 
-                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12" 
+                      className="bg-input border-border text-foreground placeholder-muted-foreground h-12 rounded-xl" 
                       required 
                     />
                   </div>
@@ -516,7 +525,7 @@ const Index = () => {
                       name="email"
                       type="email" 
                       placeholder="your.email@example.com" 
-                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 h-12" 
+                      className="bg-input border-border text-foreground placeholder-muted-foreground h-12 rounded-xl" 
                       required 
                     />
                   </div>
@@ -525,14 +534,14 @@ const Index = () => {
                       name="message"
                       placeholder="Tell me about your project or idea..." 
                       rows={5} 
-                      className="bg-white/5 border-white/20 text-white placeholder-gray-400 resize-none" 
+                      className="bg-input border-border text-foreground placeholder-muted-foreground resize-none rounded-xl" 
                       required 
                     />
                   </div>
                   <Button 
                     type="submit" 
                     disabled={isSubmitting}
-                    className="w-full bg-amber-400 hover:bg-amber-500 text-black font-semibold h-12 tracking-wider disabled:opacity-50"
+                    className="w-full bg-gradient-to-r from-accent to-secondary hover:shadow-lg shadow-accent/25 text-accent-foreground font-semibold h-12 rounded-xl tracking-wide disabled:opacity-50 transition-all duration-300"
                   >
                     {isSubmitting ? 'Sending...' : 'Send Message'} <ArrowRight className="ml-2 w-4 h-4" />
                   </Button>
@@ -543,35 +552,35 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="py-12 px-6 border-t border-white/10 bg-[#14011e]">
-        <div className="container mx-auto">
+      {/* Modern Footer */}
+      <footer className="py-12 px-4 md:px-6 border-t border-border bg-background">
+        <div className="container mx-auto max-w-6xl">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-            <div className="text-white font-light tracking-wider">
+            <div className="text-foreground font-bold tracking-wider text-lg">
               PRIYUNSHU SAHA
             </div>
-            <div className="text-gray-400 text-sm tracking-wider">BYE ! HOPE TO SEE YOU AGAIN</div>
-            <div className="flex space-x-6 text-sm text-gray-400 tracking-wider">
-              <span>COOOL !</span>
+            <div className="text-muted-foreground text-sm tracking-wider">Thanks for visiting! Hope to see you again</div>
+            <div className="flex space-x-6 text-sm text-muted-foreground tracking-wider">
+              <span>Made with ❤️</span>
               <span>2024</span>
             </div>
           </div>
         </div>
       </footer>
 
-      {/* Scrolling skills ticker */}
-      <div className="fixed bottom-0 left-0 w-full text-black py-2 overflow-hidden z-40 bg-[#c1c2dd] rounded-none">
+      {/* Modern Skills Ticker */}
+      <div className="fixed bottom-0 left-0 w-full py-3 overflow-hidden z-40 bg-accent/90 backdrop-blur-sm">
         <div className="flex space-x-8 animate-scroll whitespace-nowrap">
-          <span className="text-sm font-semibold">Mobile Development ✦</span>
-          <span className="text-sm font-semibold">AI Integration ✦</span>
-          <span className="text-sm font-semibold">Backend APIs ✦</span>
-          <span className="text-sm font-semibold">Bengali Tech ✦</span>
-          <span className="text-sm font-semibold">UI/UX Design ✦</span>
-          <span className="text-sm font-semibold">Flutter Apps ✦</span>
-          <span className="text-sm font-semibold">Mobile Development ✦</span>
-          <span className="text-sm font-semibold">AI Integration ✦</span>
-          <span className="text-sm font-semibold">Backend APIs ✦</span>
-          <span className="text-sm font-semibold">Bengali Tech ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">Mobile Development ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">AI Integration ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">Backend APIs ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">Bengali Tech ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">UI/UX Design ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">Flutter Apps ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">Mobile Development ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">AI Integration ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">Backend APIs ✦</span>
+          <span className="text-sm font-semibold text-accent-foreground">Bengali Tech ✦</span>
         </div>
       </div>
     </div>
